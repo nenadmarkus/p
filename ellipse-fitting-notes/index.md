@@ -11,7 +11,7 @@ This post analyzes the problem of fitting an axis-aligned ellipse to a set of po
 To be more specific, given an image such as the one below, our goal is to devise an algorithm that extracts all the ellipses from it.
 
 <center>
-<img src="example.png" style="width: 75%; max-width: 400px;" alt="An example image with ellipses.">
+<img src="example.svg" style="width: 75%; max-width: 400px;" alt="An example image with ellipses.">
 </center>
 
 This problem  can be formulated as fitting a parametric equation to a set of points.
