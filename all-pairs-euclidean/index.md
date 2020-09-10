@@ -83,12 +83,12 @@ def all_pairs_euclid_torch(A, B):
 Note that the above code can be executed on the GPU as well.
 
 By setting $M=2048$, $N=2048$ and $d=2048$, we obtain the following timings for the modern 40-thread Intel CPU and the Nvidia 1080Ti GPU:
-<pre>
+
 | Implementation | Time [ms] |
 | -------------- | --------- |
 | naive          | 29500     |
 | numpy          | 160       |
 | pytorch        | 20        |
-| pytorch (cuda) | 15        |</pre>
+| pytorch (cuda) | 15        |
 
 You can get the time measurements for your hardware by running the following [script](code.py).
