@@ -7,7 +7,7 @@ layout: default
 katex: true
 ---
 
-Given two arrays of \$$d$$-dimensional vectors, $\mathbf{A}\in\mathbb{R}^{M\times d}$ and $\mathbf{B}\in\mathbb{R}^{N\times d}$, we are interested in efficient vectorized code for obtaining a matrix $\mathbf{D}\in\mathbb{R}^{M\times N}$ such that
+Given two arrays of $d$-dimensional vectors, $\mathbf{A}\in\mathbb{R}^{M\times d}$ and $\mathbf{B}\in\mathbb{R}^{N\times d}$, we are interested in efficient vectorized code for obtaining a matrix $\mathbf{D}\in\mathbb{R}^{M\times N}$ such that
 
 $$
 	(\mathbf{D})_{ij} = \vert\vert\mathbf{a}_i - \mathbf{b}_j\vert\vert_2
@@ -44,7 +44,8 @@ $$
 	\mathbf{D} = \sqrt{\mathbf{S}_A - 2\cdot\mathbf{A}\cdot\mathbf{B}^T + \mathbf{S}_B}
 $$
 
-where $\mathbf{S}_A\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_A)_\{ij}=\mathbf{a}_i^T\mathbf{a}_i$ and $\mathbf{S}_B\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j$.
+where $\mathbf{S}_A\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_A)_\{ij}=\mathbf{a}_i^T\mathbf{a}_i$ and
+$\mathbf{S}_B\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j$.
 The square root is taken elementwise.
 
 Each of the three above terms can be obtain with vectorized code.
