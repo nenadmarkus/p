@@ -7,7 +7,7 @@ layout: default
 katex: true
 ---
 
-Given two arrays of $d$-dimensional vectors, $\mathbf{A}\in\mathbb{R}^{M\times d}$ and $\mathbf{B}\in\mathbb{R}^{N\times d}$, we are interested in efficient vectorized code for obtaining a matrix $\mathbf{D}\in\mathbb{R}^{M\times N}$ such that
+Given two arrays of $$d$$-dimensional vectors, $\mathbf{A}\in\mathbb{R}^{M\times d}$ and $\mathbf{B}\in\mathbb{R}^{N\times d}$, we are interested in efficient vectorized code for obtaining a matrix $\mathbf{D}\in\mathbb{R}^{M\times N}$ such that
 
 $$
 	(\mathbf{D})_{ij} = \vert\vert\mathbf{a}_i - \mathbf{b}_j\vert\vert_2
