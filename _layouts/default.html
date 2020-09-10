@@ -30,7 +30,8 @@
 		<script>
 			const div = document.getElementById("content");
 			// this is actually a hack because kramdown replaces $$...$$ with \[...\]
-			renderMathInElement(div, {delimiters: [{left: "\\[", right: "\\]", display: true}, {left: "$", right: "$", display: false}]});
+			//renderMathInElement(div, {delimiters: [{left: "\\[", right: "\\]", display: true}, {left: "$", right: "$", display: false}]});
+			renderMathInElement(div);
 		</script>
 		{% endif %}
 	</body>
