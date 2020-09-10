@@ -1,5 +1,5 @@
 ---
-title:Some notes on ellipse fitting
+title: Some notes on ellipse fitting
 date: 2019-09-10
 excerpt: Two RANSAC-based algorithms that should work in most cases.
 tags: ellipse, RANSAC, least squares
