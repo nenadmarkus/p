@@ -29,8 +29,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 		<script>
 			const div = document.getElementById("content");
-			// this is actually a hack because kramdown replaces $$...$$ with \[...\]
-			renderMathInElement(div, {delimiters: [{left: "\\[", right: "\\]", display: true}, {left: "$", right: "$", display: false}]});
+			renderMathInElement(div);
 		</script>
 		{% endif %}
 	</body>
