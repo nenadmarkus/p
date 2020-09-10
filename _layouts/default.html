@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{ page.title }}</title>
+	</head>
+	<body>
+		<h1>{{ page.title }}</h1>
+		<div id="content">
+			{{ content }}
+		</div>
+
+		{% if page.katex %}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" crossorigin="anonymous">
+		<style>
+			/* from <https://github.com/KaTeX/KaTeX/issues/327> */
+			.katex-display > .katex {
+				max-width: 100%;
+			}
+			.katex-display > .katex > .katex-html {
+				max-width: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				padding-left: 2px;
+				padding-right: 2px;
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+		<script>
+			const div = document.getElementById("content");
+			// this is actually a hack because kramdown replaces $$...$$ with \[...\]
+			renderMathInElement(div, {delimiters: [{left: "\\[", right: "\\]", display: true}, {left: "$", right: "$", display: false}]});
+		</script>
+		{% endif %}
+	</body>
+</html>
