@@ -8,9 +8,11 @@ katex: true
 ---
 
 Given two arrays of $d$-dimensional vectors, $\mathbf{A}\in\mathbb{R}^{M\times d}$ and $\mathbf{B}\in\mathbb{R}^{N\times d}$, we are interested in efficient vectorized code for obtaining a matrix $\mathbf{D}\in\mathbb{R}^{M\times N}$ such that
+
 $$
 	(\mathbf{D})_{ij} = \vert\vert\mathbf{a}_i - \mathbf{b}_j\vert\vert_2
 $$
+
 where $(\mathbf{D})_{ij}$ is the $ij$th entry of $\mathbf{D}$, $\mathbf{a}_i$ is the $i$th row of $\mathbf{A}$ and $\mathbf{b}_j$ is the $j$th row of $\mathbf{B}$.
 In other words, we want to compute the Euclidean distance between all vectors in $\mathbf{A}$ and all vectors in $\mathbf{B}$.
 The following `numpy` code does exactly this:
