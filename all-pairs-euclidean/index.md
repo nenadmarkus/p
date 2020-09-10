@@ -31,16 +31,19 @@ def all_pairs_euclid_naive(A, B):
 Unfortunately, this code is really inefficient.
 To rectify the issue, we need to write a vectorized version in which we avoid the explicit usage of loops.
 To arrive at a solution, we first expand the formula for the Euclidean distance:
+
 $$
-	||\mathbf{a}_i - \mathbf{b}_j||_2=
+	\vert\vert\mathbf{a}_i - \mathbf{b}_j\vert\vert_2=
 	(\mathbf{a}_i - \mathbf{b}_j)^T(\mathbf{a}_i - \mathbf{b}_j)=
 	\mathbf{a}_i^T\mathbf{a}_i - 2\mathbf{a}_i^T\mathbf{b}_j + \mathbf{b}_j^T\mathbf{b}_j
 $$
 
 This leads us to the following equation for $\mathbf{D}$:
+
 $$
 	\mathbf{D} = \sqrt{\mathbf{S}_A - 2\cdot\mathbf{A}\cdot\mathbf{B}^T + \mathbf{S}_B}
 $$
+
 where $\mathbf{S}_A\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_A)_\{ij}=\mathbf{a}_i^T\mathbf{a}_i$ and
 $\mathbf{S}_B\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j$.
 The square root is taken elementwise.
