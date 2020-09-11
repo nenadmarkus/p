@@ -13,7 +13,7 @@ The original algorithm can be found in the following [paper](http://graphics.sta
 <p>
 <i>R. Osada, T. Funkhouser, B. Chazelle, D. Dobkin</i><br/>
 <b>Shape Distributions</b>, ACM Transactions on Graphics, 2002<br/>
-<p>
+</p>
 
 ## Sampling a point cloud on a 3D mesh
 
