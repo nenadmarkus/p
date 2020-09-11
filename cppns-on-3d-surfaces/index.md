@@ -73,7 +73,7 @@ However, note that potentially large number of vertices (and, consequentially, t
 
 The program is available at the following link: [sferogen.py](sferogen.py).
 To run it, you need to install [`glumpy`](https://glumpy.github.io) (a simplified OpenGL interface for Python).
-Also, see <https://tehnokv.com/posts/visualizing-audio-with-cppns> that briefly explains how a sequence of frames is stitched into a video via FFmpeg.
+Also, see [this post](../visualizing-audio-with-cppns) that briefly explains how a sequence of frames is stitched into a video via FFmpeg.
 Some example renderings of the program are shown in the following images.
 
 <p><center>
