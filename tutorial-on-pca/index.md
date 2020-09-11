@@ -381,5 +381,3 @@ For a more comprehensive analysis check the [Wikipedia article](https://en.wikip
 
 This blog post introduced the basics of the PCA method, a common first tool in exploratory data analysis, feature extraction and data compression.
 The reader is encouraged to explore additional tutorials and articles for a different perspective, with the hope that information obtained here was useful.
-
-Please consider checking out other blog posts at <https://tehnokv.com/posts/> for simialr content or subsribe to twitter feed, [@tehnokv](https://twitter.com/tehnokv), for updates.
