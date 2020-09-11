@@ -19,7 +19,7 @@ The ideas, code and experiments described in this post enable us to render abstr
 </div>
 
 The basic idea is to assign an RGB color value to each point on the surface of a 3D mesh with a CPPN.
-Recall that in our [last post](https://tehnokv.com/posts/cppns-on-3d-surfaces) we denoted the input as $$\mathbf{h}_0$$
+Recall that in our [last post](../cppns-on-3d-surfaces) we denoted the input as $$\mathbf{h}_0$$
 (this vector, along with the parameters/structure of the CPPN, determines the color for a 3D point).
 Thus, in the case of 3D space:
 

@@ -1,8 +1,3 @@
-#
-# released under the MIT license
-# https://tehnokv.com/posts/visualizing-audio-with-cppns
-#
-
 import numpy
 import sys
 import os

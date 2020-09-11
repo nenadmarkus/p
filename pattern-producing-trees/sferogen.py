@@ -2,6 +2,56 @@ import numpy
 from glumpy import app, gl, glm, gloo
 import os
 import cv2
+import ctypes
+import time
+
+#
+#
+#
+
+os.system('cc api.c -O3 -fPIC -shared -o ud3.lib.so')
+ud3lib = ctypes.cdll.LoadLibrary('./ud3.lib.so')
+os.system('rm ud3.lib.so')
+
+src = '''#include <stdint.h>
+#include <stdlib.h>
+void randomize_leaves(void* trees[], int ntrees, float newpreds[], int nnew)
+{
+    int i, j, k;
+
+    // randomize predictions
+    for(i=0; i<ntrees; ++i)
+    {
+        void* tree = trees[i];
+        //
+        int pdim = ((int32_t*)tree)[0];
+        int tdepth = ((int32_t*)tree)[1];
+
+        int32_t* finds = (int32_t*)&((int32_t*)tree)[2];
+        float* threshs = (float*)&((int32_t*)tree)[2 + (1<<tdepth)-1];
+        float* preds = (float*)&((int32_t*)tree)[2 + (1<<tdepth)-1 + (1<<tdepth)-1];
+
+        //
+        for(j=0; j<(1<<tdepth); ++j)
+        {
+            int u = rand()%nnew;
+
+            for(k=0; k<pdim; ++k)
+                preds[j*pdim +k] = newpreds[u*nnew + k];
+        }
+    }
+}'''
+f = open('randomizer.c', 'w')
+f.write(src)
+f.close()
+os.system('cc randomizer.c -fPIC -shared -o randomizer.lib.so')
+os.system('rm randomizer.c')
+randomizerlib = ctypes.cdll.LoadLibrary('./randomizer.lib.so')
+os.system('rm randomizer.lib.so')
+
+#
+#
+#
 
 NSTACKS = 512
 NSLICES = 512
@@ -81,63 +131,58 @@ def on_init():
     gl.glEnable(gl.GL_DEPTH_TEST)
     gl.glCullFace(gl.GL_FRONT)
     gl.glEnable(gl.GL_CULL_FACE)
+#
+#
+#
+
+def run_ppts(coords, ntrees=8, tdepth=8):
+    #
+    inputs = coords.copy()
+    targets = coords.copy()
+    #
+    trees = numpy.zeros(ntrees, dtype=numpy.int64)
+    start = time.time()
+    ud3lib.new_ensemble(
+        ctypes.c_float(0.25),
+        ctypes.c_void_p(trees.ctypes.data), ctypes.c_int(ntrees), ctypes.c_int(tdepth),
+        ctypes.c_void_p(targets.ctypes.data), ctypes.c_int(targets.shape[1]),
+        ctypes.c_void_p(inputs.ctypes.data), ctypes.c_int(inputs.shape[1]),
+        ctypes.c_void_p(0),
+        ctypes.c_int(inputs.shape[0]),
+        ctypes.c_int(32)
+    )
+    print('* elapsed time (learning): %d' % int(time.time() - start))
+    #
+    predictions = numpy.zeros(targets.shape, dtype=numpy.float32)
+    start = time.time()
+    newpreds = numpy.array([
+        [1.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0],
+        [0.0, 0.0, 1.0]
+    ], dtype=numpy.float32)/ntrees
+    randomizerlib.randomize_leaves(
+        ctypes.c_void_p(trees.ctypes.data),
+        ctypes.c_int(ntrees),
+        ctypes.c_void_p(newpreds.ctypes.data),
+        ctypes.c_int(newpreds.shape[0]),
+    )
+    ud3lib.run_ensemble(
+        ctypes.c_void_p(trees.ctypes.data), ctypes.c_int(ntrees),
+        ctypes.c_void_p(inputs.ctypes.data), ctypes.c_int(inputs.shape[1]),
+        ctypes.c_void_p(predictions.ctypes.data), ctypes.c_int(predictions.shape[1]),
+        ctypes.c_int(inputs.shape[0])
+    )
+    print('* elapsed time (prediction): %d' % int(time.time() - start))
+    #
+    return predictions
 
 #
 #
 #
 
-def build_cube():
-    #
-    vertices = numpy.array([[ 1, 1, 1], [-1, 1, 1], [-1,-1, 1], [ 1,-1, 1],
-                       [ 1,-1,-1], [ 1, 1,-1], [-1, 1,-1], [-1,-1,-1]], dtype=numpy.float32)
-    colors = numpy.array([[0, 1, 1, 1], [0, 0, 1, 1], [0, 0, 0, 1], [0, 1, 0, 1],
-                       [1, 1, 0, 1], [1, 1, 1, 1], [1, 0, 1, 1], [1, 0, 0, 1]], dtype=numpy.float32)
-    indices =  numpy.array([0,1,2, 0,2,3,  0,3,4, 0,4,5,  0,5,6, 0,6,1,
-                  1,6,7, 1,7,2,  7,4,3, 7,3,2,  4,7,6, 4,6,5], dtype=numpy.uint32)
-    #
-    return vertices, colors, indices
-#
-#
-#
-
-def gen_cppn(inp_size, otp_size, hsize=32, nlayers=8):
-    #
-    layers = []
-    for i in range(0, nlayers):
-        #
-        if i == 0:
-            mutator = numpy.random.randn(inp_size, hsize)
-        elif i==nlayers-1:
-            mutator = numpy.random.randn(hsize, otp_size)
-        else:
-            mutator = numpy.random.randn(hsize, hsize)
-        #
-        mutator = mutator.astype(numpy.float32)
-
-        #
-        layers.append(mutator)
-    #
-    return layers
-
-def run_cppn(coordmat, noutputs, hsize=24, nlayers=8):
-    #
-    layers = gen_cppn(coordmat.shape[1], noutputs, hsize=hsize, nlayers=nlayers)
-    #
-    result = coordmat.copy().astype(numpy.float32)
-
-    for layer in layers:
-        #
-        result = numpy.clip(numpy.matmul(result, layer), -1.0, 1.0)
-
-    result = (1.0 + result)/2.0
-
-    result = result
-
-    return result
-
-# the following funciton could be heavily optimized
+# the following function could be heavily optimized
 # (not a priority at this point)
-def build_sphere(radius=1.0):
+def build_sphere(radius=1.5):
     #
     nstacks = NSTACKS
     nslices = NSLICES
@@ -180,17 +225,18 @@ def build_sphere(radius=1.0):
     #
     angles = numpy.array(angles, dtype=numpy.float32)
     #
-    vertices = numpy.stack([
+    vertices = radius*numpy.stack([
         numpy.sin(angles[:, 0])*numpy.cos(angles[:, 1]),
         numpy.sin(angles[:, 0])*numpy.sin(angles[:, 1]),
         numpy.cos(angles[:, 0])
     ]).transpose()
+    inps = vertices
     #
     colors = numpy.ones((len(vertices), 4), dtype=numpy.float32)
-    colors[:, 0:3] = run_cppn(vertices, 3)
+    colors[:, 0:3] = run_ppts(inps)
     #
-    rmod = 0.0*(0.5-run_cppn(vertices, 1, hsize=16, nlayers=8)).reshape(-1, 1)
-    vertices = vertices + rmod*vertices
+    #rmod = 0.25*(0.5-run_ppts(inps, tdepth=4)[:, 0]).reshape(-1, 1)
+    #vertices = vertices + rmod*vertices
     #
     return vertices, colors, numpy.array(indices, dtype=numpy.uint32), numpy.array(lines, dtype=numpy.uint32)
 
