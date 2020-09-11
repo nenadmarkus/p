@@ -396,30 +396,11 @@ Successive layers are applied just as described earlier in this post
 This procedure is repeated for each segment of the audio samples.
 All the generated images are stitched together with FFmpeg and the final result is a smooth animation that is correlated with the source audio signal.
 See <https://www.youtube.com/embed/QHTjYSC8RWw> for an example.
-<!--
-<div style="text-align:center;">
-<iframe src="https://www.youtube-nocookie.com/embed/QHTjYSC8RWw" allowfullscreen style="width:256px;height:256px;border:none;"></iframe>
-</div>
--->
-<!--
-<div style="text-align:center;">
-<video style="width: 256px; height: 256px;" controls>
-<source src="hinexedra-cyberkinetic-large.mp4" type="video/mp4">
-</video>
-</div>
--->
 
 In our current model, all the frequency features are mixed together via a CPPN into a single image for each frame of the animation.
 This could potentially be undesirable for some applications.
 Thus, it might be more appealing to render an animation for each frequency band and tile them together into a single video.
 This variation can be seen at <https://www.youtube.com/embed/t9VvtawZYHI>.
-<!--
-<div style="text-align:center;">
-<video style="width: 75%;" controls>
-<source src="inexedra-diode-tiled.mp4" type="video/mp4">
-</video>
-</div>
--->
 Notice that each blob expands with the intensity present in the corresponding frequency band.
 This effect also adds an interesting feel to the visualization.
 
