@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>wasmpico</title>
+	</head>
+	<script src="camvas.js"></script>
+	<script src="https://drone.nenadmarkus.com/data/blog-stuff/wasmpico.js"></script>
+	<script>
+		var initialized = false;
+		function button_callback() {
+			//
+			if (initialized)
+				return;
+			//
+			if (typeof Module === 'undefined') {
+				console.log('* wasm module not loaded yet')
+				return;
+			}
+			//
+			const nrows=480, ncols=640;
+			const ppixels = Module._malloc(nrows*ncols);
+			const pixels = new Uint8Array(Module.HEAPU8.buffer, ppixels, nrows*ncols);
+
+			const maxndetections = 1024;
+			const prcsq = Module._malloc(4*4*maxndetections)
+			const rcsq = new Float32Array(Module.HEAPU8.buffer, prcsq, maxndetections);
+
+			function rgba_to_grayscale(rgba, nrows, ncols) {
+				for(let r=0; r<nrows; ++r)
+					for(let c=0; c<ncols; ++c)
+						// take just the green channel
+						pixels[r*ncols + c] = rgba[r*4*ncols+4*c+1];
+				return pixels;
+			}
+			//
+			const ctx = document.getElementsByTagName('canvas')[0].getContext('2d');
+			//
+			const processfn = function (video, dt) {
+				// render the video frame to the canvas element
+				ctx.drawImage(video, 0, 0);
+				const rgba = ctx.getImageData(0, 0, ncols, nrows).data;
+				rgba_to_grayscale(rgba, nrows, ncols);
+				//
+				params = {
+					"shiftfactor": 0.1, // move the detection window by 10% of its size
+					"minsize": 100,     // minimum size of a face
+					"maxsize": 1000,    // maximum size of a face
+					"scalefactor": 1.1  // for multiscale processing: resize the detection window by 10% when moving to the higher scale
+				}
+				// run the detector across the frame
+				// rcsq is an array representing row, column, scale and detection score
+				const ndetections = Module._find_faces(prcsq, maxndetections, ppixels, nrows, ncols, ncols, params.scalefactor, params.shiftfactor, params.minsize, params.maxsize);
+				// draw detections
+				for(i=0; i<ndetections; ++i)
+					// check the detection score
+					// if it's above the (empirical) threshold, draw it
+					if(rcsq[4*i+3]>50.0)
+					{
+						ctx.beginPath();
+						ctx.arc(rcsq[4*i+1], rcsq[4*i+0], rcsq[4*i+2]/2, 0, 2*Math.PI, false);
+						ctx.lineWidth = 3;
+						ctx.strokeStyle = 'red';
+						ctx.stroke();
+					}
+			}
+			//
+			const mycamvas = new camvas (ctx, processfn);
+			//
+			initialized = true;
+		}
+	</script>
+	<body>
+		<hr>
+		<section>
+			<h3>pico.wasm: a face detector compiled to WebAssembly</h3>
+			<p>If your platform supports the getUserMedia API call, you can try the <b>pico.wasm</b> real-time face detector.</p>
+			<p>Simply click the button below and allow the page to access your webcam.</p>
+			<p><b>All the processing is done on the client side, i.e., without sending images to a server.</b></p>
+		</section>
+		<hr>
+		<p><center><input type="button" value="Start real-time face detection" onclick="button_callback()"></center></p>
+		<p><center><canvas width=640 height=480></canvas></center></p>
+		<hr>
+		<section>
+			<h3>Additional notes</h3>
+			<ul>
+				<li>find more info about this project in the <a href="../">associated post</a>;</li>
+				<li>open-source code available at <a href="https://github.com/nenadmarkus/pico">https://github.com/nenadmarkus/pico</a>;</li>
+				<li>visit <a href="https://nenadmarkus.com">https://nenadmarkus.com</a> for similar projects.</li>
+			</ul>
+		</section>
+	</div>
+	</body>
+</html>
