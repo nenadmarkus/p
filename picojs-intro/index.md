@@ -1,5 +1,5 @@
 ---
-title: pico.js: a face-detection library in 200 lines of JavaScript
+title: pico.js, a face-detection library in 200 lines of JavaScript
 date: 2018-04-01
 excerpt: Description of the algorithm and its implementation.
 tags: pico, face detection, javascript, object detection, viola-jones, decision tree, boosting, non-maximum suppression
