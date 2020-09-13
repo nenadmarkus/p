@@ -3,7 +3,7 @@
 Posts, opinions and notes about machine learning, computer vision and related stuff.
 
 The source files currently live at [https](https://github.com/nenadmarkus/p).
-Also see my <a href="https://nenadmarkus.github.io">homepage</a> for a list of projects related to the contents on this blog.
+Also see my [homepage](https://nenadmarkus.github.io) for a list of projects related to the contents on this blog.
 
 A list of all published posts follows.
 
