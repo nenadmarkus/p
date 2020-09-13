@@ -1,4 +1,11 @@
-## Nenad's research notes
+---
+title: Nenad's research notes
+date: 2020-09-13
+excerpt: Posts, opinions and notes about machine learning, computer vision and related stuff.
+tags: Nenad Markus
+layout: default
+katex: false
+---
 
 Posts, opinions and notes about machine learning, computer vision and related stuff.
 
