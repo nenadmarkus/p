@@ -2,7 +2,7 @@
 title: A fast algorithm for generating triangle meshes from signed distance bounds
 date: 2020-04-05
 excerpt: We discuss `gridhopping` (https://github.com/nenadmarkus/gridhopping) and its computational complexity.
-tags: gridhopping, lambdacad, sphere tracing, ray marching
+tags: gridhopping, lambdacad, sphere tracing, ray marching, marching cubes
 layout: default
 katex: true
 ---
