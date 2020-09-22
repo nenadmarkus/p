@@ -32,7 +32,7 @@ where $$f_S^{-1}(0)=\{\mathbf{z}: f_S(\mathbf{z})=0\}$$.
 If we assume that $$f_S$$ is Lipschitz continuous with Lipschitz constant $$\lambda^*$$, then for any point $$\mathbf{x}$$ and $$\mathbf{z}$$ such that
 
 $$
-	\vert\vert\mathbf{x} - \mathbf{z}\vert\vert\_2=
+	\vert\vert\mathbf{x} - \mathbf{z}\vert\vert_2=
 	\min_{\mathbf{y}\in f_S^{-1}(0)}\vert\vert\mathbf{x} - \mathbf{y}\vert\vert_2
 $$
 
