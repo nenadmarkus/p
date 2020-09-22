@@ -14,6 +14,8 @@ Also see my [homepage](https://nenadmarkus.github.io) for a list of projects rel
 
 A list of all published posts follows.
 
+* [04/2020 - Lipschitz continuity and sphere tracing](lipschitz-continuity-and-sphere-tracing)
+* [04/2020 - A fast algorithm for generating triangle meshes from signed distance bounds](fast-algo-sdb-to-mesh)
 * [09/2019 - Some notes on ellipse fitting](ellipse-fitting-notes)
 * [07/2019 - Using decision trees for real-time localization of eye pupils](puploc-with-trees)
 * [05/2019 - All-pairs Euclidean distance](all-pairs-euclidean)
