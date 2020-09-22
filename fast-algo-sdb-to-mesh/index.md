@@ -12,8 +12,8 @@ If $$(x, y, z)$$ is within $$S$$, then the returned distance is negative.
 J. C. Hart [1] uses the definition that $$f_S$$ is a signed distance bound of $$S$$ if and only if for all $$\mathbf{x}\in\mathbb{R}^3$$ we have
 
 $$
-	|f_S(\mathbf{x})|\leq
-	\min_{\mathbf{y}\in f_S^{-1}(0)}||\mathbf{x} - \mathbf{y}||_2
+	\vert f_S(\mathbf{x})\vert\leq
+	\min_{\mathbf{y}\in f_S^{-1}(0)}\vert\vert\mathbf{x} - \mathbf{y}\vert\vert_2
 $$
 
 where $$f_S^{-1}(0)=\{\mathbf{z}: f_S(\mathbf{z})=0\}$$.
@@ -89,13 +89,13 @@ If the polygonization volume cotains a shape $$S$$ described by its signed dista
 
 $$
 	\mathbf{r}_{n+1}=
-	\mathbf{r}_n + \left|f_S(\mathbf{r}_n)\right|\mathbf{d}
+	\mathbf{r}_n + \left\vert f_S(\mathbf{r}_n)\right\vert\mathbf{d}
 $$
 
-The iteration starts at $$\mathbf{r}_0=\mathbf{o}_{ij}$$ and continues until $$\left|f_S(\mathbf{r}_n)\right|$$ is sufficiently small
+The iteration starts at $$\mathbf{r}_0=\mathbf{o}_{ij}$$ and continues until $$\left\vert f_S(\mathbf{r}_n)\right\vert$$ is sufficiently small
 (indicating we are very close to the surface of $$S$$, by definition of $$f_S$$).
 In our case, we are only interested to move close enough to the surface to determine the $$(i, j, k)$$ triplet determining the cell.
-Simple algebra shows that a cell possibly intersects the surface of $$S$$ and we have to call a polygonization routine if the distance $$\left|f_S\right|$$ is less than or equal to
+Simple algebra shows that a cell possibly intersects the surface of $$S$$ and we have to call a polygonization routine if the distance $$\left\vert f_S\right\vert$$ is less than or equal to
 
 $$
 	\sqrt{
@@ -149,7 +149,7 @@ If the ray intersects the surface and we denote the closest intersection to $$\m
 then the above iteration converges to $$\mathbf{r}^*$$.
 This is because
 
-1. $$\left|f_S(\mathbf{r}_n)\right|\geq 0$$;
+1. $$\left\vert f_S(\mathbf{r}_n)\right\vert\geq 0$$;
 2. on the ray between $$\mathbf{r}_0$$ and $$\mathbf{r}^*$$, $$f_S(\mathbf{r})=0$$ only for $$\mathbf{r}=\mathbf{r}^*$$;
 3. the iteration will never "overshoot" $$\mathbf{r}^*$$ because $$f_S$$ is a signed distance bound.
 
@@ -185,7 +185,7 @@ $$
 	\mathbf{n}_P^T\cdot (\mathbf{r} - \mathbf{r}_P)
 $$
 
-where $$\mathbf{r}_P$$ is some point lying on $$P$$ and $$\mathbf{n}_P$$ is $$P$$'s normal vector such that $$\mathbf{n}_P^T\cdot\mathbf{n}_P=||\mathbf{n}_P||_2^2=1$$.
+where $$\mathbf{r}_P$$ is some point lying on $$P$$ and $$\mathbf{n}_P$$ is $$P$$'s normal vector such that $$\mathbf{n}_P^T\cdot\mathbf{n}_P=\vert\vert\mathbf{n}_P\vert\vert_2^2=1$$.
 
 We analyze three different cases: two cases of axis-aligned planes and one case for a plane in general position.
 The first case is when the plane and the rays are perpendicular.
@@ -241,7 +241,7 @@ Combining this assumption with the basic iteration of the algorithm and the poin
 
 $$
 	z_{n+1}=
-	z_n + \left| n_x x_0 + n_y y_0 + n_z z_n \right|
+	z_n + \left\vert n_x x_0 + n_y y_0 + n_z z_n \right\vert
 $$
 
 where $$(n_x, n_y, n_z)^T$$ is the unit normal of the plane and $$(x_0, y_0, z_0)^T$$ is the origin of the ray.
