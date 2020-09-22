@@ -39,7 +39,7 @@ $$
 we have
 
 $$
-	\vertf(\mathbf{x})\vert\leq
+	\vert f(\mathbf{x})\vert\leq
 	\lambda^*\vert\vert\mathbf{x} - \mathbf{z}\vert\vert_2=
 	\lambda^*\min_{\mathbf{y}\in f_S^{-1}(0)}\vert\vert\mathbf{x} - \mathbf{y}\vert\vert_2
 $$
