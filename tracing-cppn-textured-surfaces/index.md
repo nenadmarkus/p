@@ -37,7 +37,7 @@ for m in range(0, M):
 		(r, g, b) = apply_cppn(x, y, z)
 ```
 
-For speed reasons, we vectorize the above code and implement some parts in C.
+For speed reasons, we vectorize the above code and implement some parts in C: [run.py](run.y) and [tracer.c](tracer.c).
 Example results are below.
 
 <center>
