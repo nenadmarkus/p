@@ -7,7 +7,7 @@ layout: default
 katex: true
 ---
 
-Recall that in one of our [previous posts](../cppns-on-3d-surfaces) we have shown how to colorize 3D shapes with [CPPNs](https://en.wikipedia.org/wiki/Compositional_pattern-producing_network).
+Recall that we have shown in a [previous post](../cppns-on-3d-surfaces) how to colorize 3D shapes with [CPPNs](https://en.wikipedia.org/wiki/Compositional_pattern-producing_network).
 
 > The basic idea is to assign an RGB color value to each point on the surface of a 3D mesh with a CPPN.
 
@@ -37,7 +37,7 @@ for m in range(0, M):
 		(r, g, b) = apply_cppn(x, y, z)
 ```
 
-For speed reasons, we vectorize the above code and implement some parts in C: [run.py](run.y) and [tracer.c](tracer.c).
+For speed reasons, we vectorize the above code and implement some parts in C: [run.py](run.py) and [tracer.c](tracer.c).
 Example results are below.
 
 <center>
