@@ -4,7 +4,7 @@ date: 2020-10-11
 excerpt: A post describing how to use sphere tracing to render CPPN-colored 3D shapes.
 tags: ray marching, CPPNs, signed distance fields
 layout: default
-katex: true
+katex: false
 ---
 
 Recall that we have shown in a [previous post](../cppns-on-3d-surfaces) how to colorize 3D shapes with [CPPNs](https://en.wikipedia.org/wiki/Compositional_pattern-producing_network).
