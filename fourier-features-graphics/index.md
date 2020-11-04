@@ -28,9 +28,9 @@ $$
 	\right)^T
 $$
 
-where $$\mathbf{v}$$ is the input vector to be transformed and there are $N$ frequency vectors $$\mathbf{f}_1, \mathbf{f}_2, \ldots, \mathbf{f}_N$$.
+where $$\mathbf{v}$$ is the input vector to be transformed and there are $$N$$ frequency vectors $$\mathbf{f}_1, \mathbf{f}_2, \ldots, \mathbf{f}_N$$.
 Each of these frequency vectors is sampled from a normal distribution with a zero mean and a diagonal covariance matrix of the form $$\sigma^2\mathbf{I}$$.
-The standard deviation $$\sigma$$ value is the most interesting property of the encoding as it sets the level of detail that can be represented.
+The standard deviation $$\sigma$$ is the most interesting property of the encoding as it sets the level of detail that can be represented.
 
 ## Positional encoding and generative graphics
 
@@ -46,7 +46,7 @@ $$
 	(R, G, B) = \text{MLP}( RFF(x, y) )
 $$
 
-The produced visual patterns are interesting:
+The produced visual patterns are interesting and qualitatively different than the ones in our previous [CPPN post](../visualizing-audio-with-cppns):
 
 <center>
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/512x1024.jpg" style="width: 80%; max-width: 768;" alt="CPPN+RFF graphics">
@@ -75,7 +75,7 @@ We can observe that the amount of color mixing and spatial details steadily incr
 ## Pattern-producing trees
 
 Instead of an MLP, we can use [randomized trees](../pattern-producing-trees).
-The script with the code for this experiment is available [here](imggen-ppts.py).
+The script with code for this experiment is available [here](imggen-ppts.py).
 We can invoke it as follows:
 
 	python3 imggen-ppts.py 2.0 out.jpg
