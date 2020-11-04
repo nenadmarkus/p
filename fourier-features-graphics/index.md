@@ -1,5 +1,5 @@
 ---
-title: Generative graphics with random Fourier features 
+title: Generative graphics with random Fourier features
 date: 2020-04-11
 excerpt: Generate interesting visual patterns with positional encoding based on random Fourier features.
 tags: random fourier features, generative graphics, decision trees, interesting patterns

@@ -14,6 +14,7 @@ Also see my [homepage](https://nenadmarkus.github.io) for a list of projects rel
 
 A list of all published posts follows.
 
+* [11/2020 - Generative graphics with random Fourier features](fourier-features-graphics)
 * [10/2020 - Sphere tracing CPPN-colored shapes](tracing-cppn-textured-surfaces)
 * [04/2020 - Lipschitz continuity and sphere tracing](lipschitz-continuity-and-sphere-tracing)
 * [04/2020 - A fast algorithm for generating triangle meshes from signed distance bounds](fast-algo-sdb-to-mesh)
