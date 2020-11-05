@@ -75,7 +75,7 @@ We can observe that the amount of color mixing and spatial details steadily incr
 ## Pattern-producing trees
 
 Instead of an MLP, we can use [randomized trees](../pattern-producing-trees).
-The script with code for this experiment is available [here](imggen-ppts.py).
+The code for this experiment is available [here](imggen-ppts.py).
 We can invoke it as follows:
 
 	python3 imggen-ppts.py 2.0 out.jpg
