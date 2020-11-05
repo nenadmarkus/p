@@ -91,6 +91,6 @@ Here are some examples for varying standard deviation:
 
 ## Resources
 
-[1] Tancik et al. Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains.
+[1] Tancik et al. Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains. [https://arxiv.org/abs/2006.10739](https://arxiv.org/abs/2006.10739), 2020
 
 [2] Ali Rahimi and Ben Recht. Random Features for Large-Scale Kernel Machines. NIPS, 2007 
