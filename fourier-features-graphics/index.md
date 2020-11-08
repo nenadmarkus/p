@@ -72,6 +72,14 @@ Here are four examples for $$\sigma=1, 2, 3, 4$$:
 
 We can observe that the amount of color mixing and spatial details steadily increases with $$\sigma$$.
 
+We can also add a temporal dimension to produce videos such as the following one:
+
+<div style="text-align:center;">
+<video style="width: 70%; height:35%; max-width: 512px; max-height: 256px;" autoplay loop="" muted="" playsinline="">
+<source src="https://drone.nenadmarkus.com/data/blog-stuff/rff/vid.mp4" type="video/mp4">
+</video>
+</div>
+
 ## Pattern-producing trees
 
 Instead of an MLP, we can use [randomized trees](../pattern-producing-trees).
