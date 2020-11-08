@@ -76,7 +76,7 @@ We can also add a temporal dimension to produce videos such as the following one
 
 <div style="text-align:center;">
 <video style="width: 70%; height:35%; max-width: 512px; max-height: 256px;" autoplay loop="" muted="" playsinline="">
-<source src="https://drone.nenadmarkus.com/data/blog-stuff/rff/vid.mp4" type="video/mp4">
+<source src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/vid.mp4" type="video/mp4">
 </video>
 </div>
 
