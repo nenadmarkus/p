@@ -72,7 +72,7 @@ Here are four examples for $$\sigma=1, 2, 3, 4$$:
 
 We can observe that the amount of color mixing and spatial details steadily increases with $$\sigma$$.
 
-We can also add a temporal dimension to produce videos such as the following one:
+We can also add a temporal dimension to produce videos such as the following one ([code](periodic.py)):
 
 <div style="text-align:center;">
 <video style="width: 70%; height:35%; max-width: 512px; max-height: 256px;" autoplay loop="" muted="" playsinline="">
