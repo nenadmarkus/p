@@ -25,10 +25,10 @@ These papers illustrate some core ideas and applications within the area.
 The first two study the learning of **generative** models for 3D shapes.
 I.e., for applications that need to generate novel 3D shapes belonging to a certain class, such as aeroplanes of cars.
 This could be useful in computer games and some types of viritual reality software, for example.
-In [1], the authors propose to model a shape as an occupancy map ($+1$ outside shape, $-1$ inside) with a neural network classifier.
+In [1], the authors propose to model a shape as an occupancy map ($$+1$$ outside shape, $$-1$$ inside) with a neural network classifier.
 Since this representaion is smooth, it is capable of defining shapes as implicit sufraces.
 However, the approach would probably not work well with sphere tracing because of issues ontlined in a [previous post](../lipschitz-continuity-and-sphere-tracing) about [Lipschitz continuity](https://en.wikipedia.org/wiki/Lipschitz_continuity).
-On the other hand, the authors of [2] propose to model a 3D shape $S$ with a neural network that is learned to estimate the signed distance field:
+On the other hand, the authors of [2] propose to model a 3D shape $$S$$ with a neural network that is learned to estimate the signed distance field:
 
 $$
 	\text{NN}(x, y, z)\approx
@@ -64,7 +64,7 @@ Our goal is to transform these shapes into signed distance fields.
 Given such a shape $$S$$, we generate a trainig set of the form
 
 $$
-	\{(\mathbf{x}_i, d_i\}
+	\left\{(\mathbf{x}_i, d_i)\right\}_{i=1}^N
 $$
 
 where $$\mathbf{x}\in\mathbb{R}^3$$ is a point in 3D space and $$d_i$$ is the Euclidean distance from $$\mathbf{x}$$ to the surface of $$S$$.
