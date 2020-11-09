@@ -1,6 +1,6 @@
 ---
 title: Generative graphics with random Fourier features
-date: 2020-04-11
+date: 2020-11-04
 excerpt: Generate interesting visual patterns with positional encoding based on random Fourier features.
 tags: random fourier features, generative graphics, decision trees, interesting patterns
 layout: default
@@ -9,7 +9,8 @@ katex: true
 
 Tancik et al. [1] recently performed a series of interesting experiments showing that positional encoding with random Fourier features (RFFs) significantly improves learning of high-frequency details on various tasks in computer graphics and image processing
 (e.g., image regression, shape representation, MRI reconstruction and inverse rendering).
-Their results are nicely illustrated in [this figure](https://user-images.githubusercontent.com/3310961/84946597-cdf59800-b09d-11ea-8f0a-e8aaeee77829.png).
+Their results are nicely illustrated in [this figure](https://user-images.githubusercontent.com/3310961/84946597-cdf59800-b09d-11ea-8f0a-e8aaeee77829.png)
+(alse see [https://github.com/tancik/fourier-feature-networks](https://github.com/tancik/fourier-feature-networks)).
 
 Given the strong properties of RFFs, let us investigate if these can be combined with [pattern-producing networks](../visualizing-audio-with-cppns) and [trees](../pattern-producing-trees) to generate interesting abstract graphics.
 
@@ -49,12 +50,12 @@ $$
 The produced visual patterns are interesting and qualitatively different than the ones in our previous [CPPN post](../visualizing-audio-with-cppns):
 
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/512x1024.jpg" style="width: 80%; max-width: 768;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/512x1024.jpg" style="width: 96%; max-width: 768;" alt="CPPN+RFF graphics">
 </center>
 
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e1.jpg" style="width: 40%; max-width: 384;" alt="CPPN+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e2.jpg" style="width: 40%; max-width: 384;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e1.jpg" style="width: 48%; max-width: 384;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e2.jpg" style="width: 48%; max-width: 384;" alt="CPPN+RFF graphics">
 </center>
 
 The script [imggen-cppn.py](imggen-cppn.py) enables you to produce similar patterns for varying standard deviation $$\sigma$$.
@@ -64,10 +65,10 @@ The script [imggen-cppn.py](imggen-cppn.py) enables you to produce similar patte
 Here are four examples for $$\sigma=1, 2, 3, 4$$:
 
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/1.jpg" style="width: 20%;" alt="CPPN+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/2.jpg" style="width: 20%;" alt="CPPN+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/3.jpg" style="width: 20%;" alt="CPPN+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/4.jpg" style="width: 20%;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/1.jpg" style="width: 24%;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/2.jpg" style="width: 24%;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/3.jpg" style="width: 24%;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/4.jpg" style="width: 24%;" alt="CPPN+RFF graphics">
 </center>
 
 We can observe that the amount of color mixing and spatial details steadily increases with $$\sigma$$.
@@ -91,10 +92,10 @@ We can invoke it as follows:
 Here are some examples for varying standard deviation:
 
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t1.jpg" style="width: 20%;" alt="PTTS+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t2.jpg" style="width: 20%;" alt="PTTS+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t3.jpg" style="width: 20%;" alt="PTTS+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t4.jpg" style="width: 20%;" alt="PTTS+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t1.jpg" style="width: 24%;" alt="PTTS+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t2.jpg" style="width: 24%;" alt="PTTS+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t3.jpg" style="width: 24%;" alt="PTTS+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/t4.jpg" style="width: 24%;" alt="PTTS+RFF graphics">
 </center>
 
 ## Resources
