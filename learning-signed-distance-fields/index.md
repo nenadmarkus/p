@@ -85,5 +85,5 @@ Of course, prior to sampling, the mesh is re-scaled to fit the unit cube.
 An example point cloud obtained in this way is illustrated in the following image:
 
 <center>
-<img src="frogpts.png" style="width: 96%; max-width: 512;" alt="Point cloud">
+<img src="frogpts.png" style="width: 96%; max-width: 512px;" alt="Point cloud">
 </center>

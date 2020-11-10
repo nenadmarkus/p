@@ -50,12 +50,12 @@ $$
 The produced visual patterns are interesting and qualitatively different than the ones in our previous [CPPN post](../visualizing-audio-with-cppns):
 
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/512x1024.jpg" style="width: 96%; max-width: 768;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/512x1024.jpg" style="width: 96%; max-width: 768px;" alt="CPPN+RFF graphics">
 </center>
 
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e1.jpg" style="width: 48%; max-width: 384;" alt="CPPN+RFF graphics">
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e2.jpg" style="width: 48%; max-width: 384;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e1.jpg" style="width: 48%; max-width: 384px;" alt="CPPN+RFF graphics">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e2.jpg" style="width: 48%; max-width: 384px;" alt="CPPN+RFF graphics">
 </center>
 
 The script [imggen-cppn.py](imggen-cppn.py) enables you to produce similar patterns for varying standard deviation $$\sigma$$.
