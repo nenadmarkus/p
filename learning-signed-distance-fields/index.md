@@ -82,3 +82,8 @@ We generate the trainig data with the help of the excellent [mesh-to-sdf library
 After the above code is executed, the `xyz` variable is a 2D `numpy` array containing $$250\;000$$ $$(x, y, z)$$ points sampled inside a unit cube centered at the origin and `dists` contains the distances of these points to the shape.
 Some of the points are sampled uniformly inside the unit cube, but the majority come from the surface of the mesh.
 Of course, prior to sampling, the mesh is re-scaled to fit the unit cube.
+An example point cloud obtained in this way is illustrated in the following image:
+
+<center>
+<img src="frogpts.png" style="width: 96%; max-width: 512;" alt="Point cloud">
+</center>
