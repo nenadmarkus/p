@@ -87,3 +87,54 @@ An example point cloud obtained in this way is illustrated in the following imag
 <center>
 <img src="frogpts.png" style="width: 96%; max-width: 512px;" alt="Point cloud">
 </center>
+
+The points outside the shape are colorized red and the ones inside are blue.
+These inside points are assigned negative distances.
+This is the usual procedure when working with [signed distance fields](../fast-algo-sdb-to-mesh).
+
+Given such a training set, we can now describe two basic learning approaches that are used in our `gridhopping` experiments later.
+
+## Approximating a signed distance field with weighted Fourier features
+
+We have used Fourier features in a [previous post](../fourier-features-graphics), but we go over the basics here once again for completeness.
+
+Let $$\mathbf{v}=(x, y, z)^T$$ be a vector representing a point location in 3D space.
+Fourier features computed from $$\mathbf{v}$$ are defined as
+
+$$
+	\text{FF}(\mathbf{v})=
+	\left(
+		\cos(2\pi\mathbf{f}_1^T\mathbf{v}), \sin(2\pi\mathbf{f}_1^T\mathbf{v}),
+		\cos(2\pi\mathbf{f}_2^T\mathbf{v}), \sin(2\pi\mathbf{f}_2^T\mathbf{v}),
+		\ldots,
+		\cos(2\pi\mathbf{f}_N^T\mathbf{v}), \sin(2\pi\mathbf{f}_N^T\mathbf{v})
+	\right)^T
+$$
+
+where $$\mathbf{f}_i$$ are the frequency vectors.
+In our experiments, we sample these from a standard normal distribusion with zero mean and a standard deviation $$\sigma$$.
+Of course, $$\mathbf{f}_i$$s are generated at the beginning and stay fixed during the whole experiment.
+Setting $$\sigma=3$$, $$N=1024$$ worked well for in our experiments and thus we keep these values.
+
+The idea is to approximate the signed distance $$d_S$$ to shape $$S$$ as a weighted average of Fourier features:
+
+$$
+	d_S(\mathbf{v})\approx
+	\mathbf{w}^T\cdot \text{FF}(\mathbf{v})
+$$
+
+The weights $$\mathbf{w}\in\mathbb{2N}$$ have to be computed (learned) with some kind of an optimization procedure.
+A simple and effective procedure is to first compute Fourier features for all poitns $$\mathbf{v}_j$$ in the dataset:
+
+$$
+	\mathbf{V}_j=
+	\text{FF}(\mathbf{v}_j)
+$$
+
+and then find $$\mathbf{w}$$ that minimizes
+
+$$
+	\sum_{j}\left( \mathbf{w}^T\mathbf{V}_j - d_j \right)^2
+$$
+
+where $$d_j=d_S(\mathbf{v}_j)$$ is the distance from the $$j$$th point to the shape $$S$$.
