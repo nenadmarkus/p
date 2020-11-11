@@ -143,7 +143,7 @@ where $$d_j=d_S(\mathbf{v}_j)$$ is the distance from the $$j$$th point to the sh
 This is an ordinary least squares problem and it has an efficient closed-form solution: [https://en.wikipedia.org/wiki/Ordinary_least_squares](https://en.wikipedia.org/wiki/Ordinary_least_squares).
 These properties make the proposed method quite elegant.
 However, we have encountered several empirical shortcomings when dealing with more complex shapes.
-Detailed analysis is out of scope for this blog post and we now focus on `gridhopping`.
+Detailed analysis of these issues is out of scope for this post and we now focus on `gridhopping`.
 
 You may recall that if [certain criteria](../lipschitz-continuity-and-sphere-tracing) are not met,
 `gridhopping` might "miss" parts of the surface of the shape and render an incomplete mesh.
