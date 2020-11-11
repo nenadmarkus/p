@@ -151,5 +151,5 @@ To circumvent these problems, we shrink the signed distance approximation by fac
 
 $$
 	\text{SDF}(x, y, z)=
-	\frac{1}{\lambda}\mathbf{w}^T\cdot \text{FF}(x, y, z)
+	\frac{\mathbf{w}^T\cdot \text{FF}(x, y, z)}{\lambda}
 $$
