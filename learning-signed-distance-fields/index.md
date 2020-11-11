@@ -134,7 +134,22 @@ $$
 and then find $$\mathbf{w}$$ that minimizes
 
 $$
+	J(\mathbf{w})=
 	\sum_{j}\left( \mathbf{w}^T\mathbf{V}_j - d_j \right)^2
 $$
 
 where $$d_j=d_S(\mathbf{v}_j)$$ is the distance from the $$j$$th point to the shape $$S$$.
+
+This is an ordinary least squares problem and it has an efficient closed-form solution: [https://en.wikipedia.org/wiki/Ordinary_least_squares](https://en.wikipedia.org/wiki/Ordinary_least_squares).
+These properties make the proposed method quite elegant.
+However, we have encountered several empirical shortcomings when dealing with more complex shapes.
+Detailed analysis is out of scope for this blog post and we now focus on `gridhopping`.
+
+You may recall that if [certain criteria](../lipschitz-continuity-and-sphere-tracing) are not met,
+`gridhopping` might "miss" parts of the surface of the shape and render an incomplete mesh.
+To circumvent these problems, we shrink the signed distance approximation by factor $$\lambda$$:
+
+$$
+	\text{SDF}(x, y, z)=
+	\frac{1}{\lambda}\mathbf{w}^T\cdot \text{FF}(x, y, z)
+$$
