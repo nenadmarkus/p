@@ -162,4 +162,4 @@ I.e., the meshes computed by `gridhopping` and the basic algorithm of cubic comp
 The only difference should be in speed.
 We check this hypothesis next.
 
-<iframe src="https://drone.nenadmarkus.com/data/blog-stuff/rff-times.pdf#zoom=FitW" width="100%" height="100%">
+<iframe src="https://drone.nenadmarkus.com/data/blog-stuff/rff-times.pdf#zoom=FitW" style="position:absolute;right:0; top:0; bottom:0; width:100%;">
