@@ -175,5 +175,5 @@ The results can be seen in the figures below
 
 First of all, note that both the abscissae and ordinates are logarithmic.
 We can see that all timing plots appear as lines in the figures.
-And if you analyze their slopes, it indeed indicates computational complexities that we have predicted theoretically.
-This confirms our theory that ``
+And if you analyze their slopes, it indeed empirically verifies the theoretically predicted computational complexities.
+This confirms our theory that `gridhopping` is significantly asymptotically faster than the basic algorithm.
