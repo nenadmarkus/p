@@ -162,6 +162,18 @@ I.e., the meshes computed by `gridhopping` and the basic algorithm of cubic comp
 The only difference should be in speed.
 We check this hypothesis next.
 
+We compare times needed to polygonize SDFs of our 6 learned models for the basic $$O(N^3)$$ algorithm and `gridhopping`.
+The grid resolution $$N$$ varies from $$64$$ to $$512$$.
+The basic method should scale as $$O(N^3)$$ and `gridhopping` as $$O(N^2\log N)$$
+(see [here](../fast-algo-sdb-to-mesh) for a theoretical analysis that produces this).
+The results can be seen in the figures below
+(the legend for all is in the top left one):
+
 <center>
-<img src="https://drone.nenadmarkus.com/data/blog-stuff/rff-times.png" style="width: 96%; max-width: 700px;" alt="Point cloud">
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/rff-times.png" style="width: 96%; max-width: 1024px;" alt="Point cloud">
 </center>
+
+First of all, note that both the abscissae and ordinates are logarithmic.
+We can see that all timing plots appear as lines in the figures.
+And if you analyze their slopes, it indeed indicates computational complexities that we have predicted theoretically.
+This confirms our theory that ``
