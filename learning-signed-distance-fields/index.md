@@ -161,3 +161,5 @@ It is important to say that this does not affect the final mesh.
 I.e., the meshes computed by `gridhopping` and the basic algorithm of cubic complexity are the same.
 The only difference should be in speed.
 We check this hypothesis next.
+
+<iframe src="https://drone.nenadmarkus.com/data/blog-stuff/rff-times.pdf" width="90%">
