@@ -123,7 +123,7 @@ $$
 	\mathbf{w}^T\cdot \text{FF}(\mathbf{v})
 $$
 
-The weights $$\mathbf{w}\in\mathbb{2N}$$ have to be computed (learned) with some kind of an optimization procedure.
+The weights $$\mathbf{w}\in\mathbb{R}^{2N}$$ have to be computed (learned) with some kind of an optimization procedure.
 A simple and effective procedure is to first compute Fourier features for all poitns $$\mathbf{v}_j$$ in the dataset:
 
 $$
@@ -153,3 +153,11 @@ $$
 	\text{SDF}(x, y, z)=
 	\frac{\mathbf{w}^T\cdot \text{FF}(x, y, z)}{\lambda}
 $$
+
+Note that using a too large $$\lambda$$ reduces the efficiency of `gridhopping`, i.e., more SDF evaluations are needed to localize the grid cells containing the shape surface.
+Thus, we want the smallest possible value that results in correct polygonization.
+We empirically found that setting $$\lambda=1.5$$ works well.
+It is important to say that this does not affect the final mesh.
+I.e., the meshes computed by `gridhopping` and the basic algorithm of cubic complexity are the same.
+The only difference should be in speed.
+We check this hypothesis next.
