@@ -177,3 +177,9 @@ First of all, note that both the abscissae and ordinates are logarithmic.
 We can see that all timing plots appear as lines in the figures.
 And if you analyze their slopes, it indeed empirically verifies the theoretically predicted computational complexities.
 This confirms our theory that `gridhopping` is significantly asymptotically faster than the basic algorithm.
+
+Let us check next how all this works when we represent the SDF with a neural network instead.
+
+## Approximating a signed distance field with neural networks
+
+
