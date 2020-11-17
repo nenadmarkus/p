@@ -53,6 +53,9 @@ We use the following 3D shapes:
 <img src="https://raw.githubusercontent.com/nenadmarkus/gridhopping/master/implementations/python/experiments/models/all.png" style="width: 96%; max-width: 768;" alt="Shapes used in our experiments">
 </center>
 
+These were downloaded from the [Thingi10K dataset](https://ten-thousand-models.appspot.com/).
+See reference [5] for more details.
+
 Our goal is to transform these shapes into signed distance fields.
 
 Given such a shape $$S$$, we generate a trainig set of the form
@@ -183,6 +186,14 @@ $$
 	\text{NN}_{\theta}(\mathbf{v})
 $$
 
+We use a simple network architecture in our experiments.
+It is not excluded that better results (more accuracy, speed improvement, etc.) would be achieved by spending more time on its design.
+Following Davies et al. [4], our networks have a feedforward fully-connected architecture with 8 layers.
+Each layer has a hidden size of 64 and the activation function is set to be a [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+To speed up training, we also use [batch normalization](https://en.wikipedia.org/wiki/Batch_normalization) in all layers except the last one.
+This results in about $$30000$$ network parameters (120kB of memory).
+By modern standards, this is tiny network, but it is capable to nicely represent the shape we use in our experiments.
+
 ## References
 
 [1] Zhiqin Chen and Hao Zhang. Learning Implicit Fields for Generative Shape Modeling. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1812.02822))
@@ -192,3 +203,5 @@ $$
 [3] Li et al. Supervised Fitting of Geometric Primitives to 3D Point Clouds. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1811.08988))
 
 [4] Davies et al. Overfit Neural Networks as a Compact Shape Representation. [https://arxiv.org/abs/2009.09808](https://arxiv.org/abs/2009.09808), 2020
+
+[5] Qingnan Zhou and Alec Jacobson. Thingi10K: A Dataset of 10,000 3D-Printing Models. [https://arxiv.org/abs/1605.04797](https://arxiv.org/abs/1605.04797), 2016
