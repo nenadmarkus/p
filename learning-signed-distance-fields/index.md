@@ -14,13 +14,7 @@ see section "Implicit representation" at [https://github.com/subeeshvasu/Awsome_
 Thus, it is warranted to investigate whether [gridhopping](../fast-algo-sdb-to-mesh) and [lambdaCAD](https://lambdacad.gitlab.io) are useful in this area.
 E.g., for extracting polygonal models from such representations for debugging or rendering purposes.
 
-Here is a selection of interesting papers on geometric deep learning:
-
-1. Zhiqin Chen and Hao Zhang. Learning Implicit Fields for Generative Shape Modeling. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1812.02822))
-2. Park et al. DeepSDF: Learning Continuous Signed Distance Functionsfor Shape Representation. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1901.05103))
-3. Li et al. Supervised Fitting of Geometric Primitives to 3D Point Clouds. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1811.08988))
-4. Davies et al. Overfit Neural Networks as a Compact Shape Representation. [https://arxiv.org/abs/2009.09808](https://arxiv.org/abs/2009.09808), 2020
-
+References [1, 2, 3, 4] are a selection of interesting papers on geometric deep learning.
 These papers illustrate some core ideas and applications within the area.
 The first two study the learning of **generative** models for 3D shapes.
 I.e., for applications that need to generate novel 3D shapes belonging to a certain class, such as aeroplanes of cars.
@@ -182,4 +176,19 @@ Let us check next how all this works when we represent the SDF with a neural net
 
 ## Approximating a signed distance field with neural networks
 
+The basic idea is to train a neural network NN with paramters $$\theta$$ that transforms the input $$\mathbf{v}=(x, y, z)^T$$ coordinates into a distance to the shape $$S$$:
 
+$$
+	d_S(\mathbf{v})\approx
+	\text{NN}_{\theta}(\mathbf{v})
+$$
+
+## References
+
+[1] Zhiqin Chen and Hao Zhang. Learning Implicit Fields for Generative Shape Modeling. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1812.02822))
+
+[2] Park et al. DeepSDF: Learning Continuous Signed Distance Functionsfor Shape Representation. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1901.05103))
+
+[3] Li et al. Supervised Fitting of Geometric Primitives to 3D Point Clouds. CVPR, 2019 ([arXiv](https://arxiv.org/abs/1811.08988))
+
+[4] Davies et al. Overfit Neural Networks as a Compact Shape Representation. [https://arxiv.org/abs/2009.09808](https://arxiv.org/abs/2009.09808), 2020
