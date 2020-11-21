@@ -192,7 +192,19 @@ Following Davies et al. [4], our networks have a feedforward fully-connected arc
 Each layer has a hidden size of 64 and the activation function is set to be a [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 To speed up training, we also use [batch normalization](https://en.wikipedia.org/wiki/Batch_normalization) in all layers except the last one.
 This results in about $$30000$$ network parameters (120kB of memory).
-By modern standards, this is tiny network, but it is capable to nicely represent the shape we use in our experiments.
+By modern standards, this is a tiny network, but it is capable to accurately represent the shapes used in our experiments.
+
+All NN evaluations are performed on an Nvidia GeForce RTX 2060 Mobile GPU.
+The results can be seen in the figures below
+(the legend for all is in the top left one):
+
+<center>
+<img src="https://drone.nenadmarkus.com/data/blog-stuff/nn-times.png" style="width: 96%; max-width: 1024px;" alt="Point cloud">
+</center>
+
+Since the axes are logarithmic again, we can observe that `gridhopping` is asymptotically better (something like $$O(N^2)$$) than the basic $$O(N^3)$$ method.
+However, for values of grid resolution $$N$$ smaller than $$2^7=128$$, the basic method is faster.
+We attribute this fact to constant overhead needed to prepare the `gridhopping` run.
 
 ## References
 
