@@ -192,7 +192,13 @@ Following Davies et al. [4], our networks have a feedforward fully-connected arc
 Each layer has a hidden size of 64 and the activation function is set to be a [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 To speed up training, we also use [batch normalization](https://en.wikipedia.org/wiki/Batch_normalization) in all layers except the last one.
 This results in about $$30000$$ network parameters (120kB of memory).
-By modern standards, this is a tiny network, but it is capable to accurately represent the shapes used in our experiments.
+By modern standards, this is a tiny network, but it is capable of accurately representing the shapes used in our experiments.
+
+The networks are learned with the standard stochastic gradient descent approach.
+We use the Adam optimizer [6] with the learning rate set to $$0.0001$$.
+The gradient-related updates are computed on minibatches containing $$512$$ point-distance pairs.
+The total number of updates is limited to $$200\;000$$ and thus the GPU-accelerated training finishes in less than one hour for each network.
+These settings seem to generalize well across a wide range of geometries.
 
 All NN evaluations are performed on an Nvidia GeForce RTX 2060 Mobile GPU.
 The results can be seen in the figures below
@@ -217,3 +223,5 @@ We attribute this fact to constant overhead needed to prepare the `gridhopping` 
 [4] Davies et al. Overfit Neural Networks as a Compact Shape Representation. [https://arxiv.org/abs/2009.09808](https://arxiv.org/abs/2009.09808), 2020
 
 [5] Qingnan Zhou and Alec Jacobson. Thingi10K: A Dataset of 10,000 3D-Printing Models. [https://arxiv.org/abs/1605.04797](https://arxiv.org/abs/1605.04797), 2016
+
+[6] Diederik P. Kingma and Jimmy Ba. Adam: A Method for Stochastic Optimization. ICLR, 2015 ([arXiv](https://arxiv.org/abs/1412.6980))
