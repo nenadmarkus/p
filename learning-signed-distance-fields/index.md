@@ -223,7 +223,21 @@ The results can be seen in figures below:
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/nn-times-cpu.png" style="width: 96%; max-width: 1024px;" alt="Point cloud">
 </center>
 
-We observe a similar asymptotical trend: `gridhopping` has a computational complexity advantage over the basic method.
+We observe a similar asymptotical trend (for large values of $$N$$): `gridhopping` has a computational complexity advantage over the basic method.
+It can even be seen that for some models the advantage holds even for smaller grid resolutions.
+
+## Conclusion
+
+We have experimentally shown that the `gridhopping` method has a significant computational benefit for polygonizing signed distance functions that are learned from data.
+This result could prove useful for computer games and virtual world software where compressed representations [4] are required for storage reasons.
+Another interesting application is sampling from parametric distributions [2] followed by polygonization for achieving greater model/world variety.
+
+The source code for our experiments is available at [https://github.com/nenadmarkus/gridhopping](https://github.com/nenadmarkus/gridhopping):
+
+* [FF experiments](https://github.com/nenadmarkus/gridhopping/tree/master/implementations/python/experiments/rff-experiments)
+* [NN experiments](https://github.com/nenadmarkus/gridhopping/tree/master/implementations/python/experiments/nn-experiments)
+
+The learned NN models can be downloaded [here](drone.nenadmarkus.com/data/blog-stuff/nn-sdf-learned-models.zip).
 
 ## References
 
