@@ -163,7 +163,8 @@ We compare times needed to polygonize SDFs of our 6 learned models for the basic
 The grid resolution $$N$$ varies from $$64$$ to $$512$$.
 The basic method should scale as $$O(N^3)$$ and `gridhopping` as $$O(N^2\log N)$$
 (see [here](../fast-algo-sdb-to-mesh) for a theoretical analysis that produces this).
-All computation is performed on a relatively high-end laptop CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz.
+Batching the SDF evaluations in chunks of size $$\approx 10;000$$ leads to speed improvements.
+All computations are performed on a relatively high-end laptop CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz.
 The results can be seen in the figures below
 (the legend for all is in the top left one):
 
@@ -221,6 +222,8 @@ The results can be seen in figures below:
 <center>
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/nn-times-cpu.png" style="width: 96%; max-width: 1024px;" alt="Point cloud">
 </center>
+
+We observe a similar asymptotical trend: `gridhopping` has a computational complexity advantage over the basic method.
 
 ## References
 
