@@ -237,7 +237,7 @@ The source code for our experiments is available at [https://github.com/nenadmar
 * [FF experiments](https://github.com/nenadmarkus/gridhopping/tree/master/implementations/python/experiments/rff-experiments)
 * [NN experiments](https://github.com/nenadmarkus/gridhopping/tree/master/implementations/python/experiments/nn-experiments)
 
-The learned NN models can be downloaded [here](drone.nenadmarkus.com/data/blog-stuff/nn-sdf-learned-models.zip).
+The learned NN models can be downloaded [here](https://drone.nenadmarkus.com/data/blog-stuff/nn-sdf-learned-models.zip).
 
 ## References
 
