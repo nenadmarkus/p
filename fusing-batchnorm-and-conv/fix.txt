@@ -1,0 +1,14 @@
+Dear Markus,
+
+I've just came across your old article on fusing batch normalization and convolution.
+
+I play with the code you provided, and spot that the last line (of computing the new bias) has a small typo.
+In particular, according to your article, one should also left multiply b_\text{conv} with W_\text{bn}.
+Please see the gist for this correction: https://gist.github.com/heytitle/34d2c3f32708d512132534965f0c220d#file-fused-batchnorm-py-L26.
+
+In the example you used, the original code doesn't introduce any error because there is no bias in the first convolution of Resnet18.
+
+Lastly, thank you for writing this nice article!
+
+Cheers,
+Pat

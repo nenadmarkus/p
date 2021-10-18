@@ -127,6 +127,8 @@ and each BN layer `bn` layer has the following ones:
 
 The following function takes as arguments two PyTorch layers, `nn.Conv2d` and `nn.BatchNorm2d`, and fuses them together into a single `nn.Conv2d` layer.
 
+Edit on October 2021: fix bug found by Pattarawat Chormai ([details](fix.txt)).
+
 ```
 def fuse_conv_and_bn(conv, bn):
 	#
@@ -151,7 +153,7 @@ def fuse_conv_and_bn(conv, bn):
 	else:
 		b_conv = torch.zeros( conv.weight.size(0) )
 	b_bn = bn.bias - bn.weight.mul(bn.running_mean).div(torch.sqrt(bn.running_var + bn.eps))
-	fusedconv.bias.copy_( b_conv + b_bn )
+	fusedconv.bias.copy_( torch.matmul(w_bn, b_conv) + b_bn )
 	#
 	# we're done
 	return fusedconv
