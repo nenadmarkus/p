@@ -8,7 +8,7 @@ katex: false
 ---
 
 There seems to be significant confusion in the C\# community regarding spawning a FFmpeg process within a GUI app (e.g., developed with the [Avalonia framework](https://github.com/AvaloniaUI/Avalonia)) and capturing its standard output.
-For example, the following articles are top-ranked on Google but do not provide a straightforward solution:
+The following articles are top-ranked on Google but do not provide a straightforward solution:
 
 * <https://stackoverflow.com/questions/50680393/c-sharp-process-standardinput-and-standardoutput-with-ffmpeg-freezes>
 * <https://stackoverflow.com/questions/46491619/using-ffmpeg-in-c-cant-get-the-ffmpeg-output>
