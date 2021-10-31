@@ -1,7 +1,7 @@
 ---
-title: Read 
+title: How to read FFmpeg output in CSharp
 date: 2021-10-31
-excerpt: We generate visually appealing, abstract forms by assigning a color to each point on the 3D shape with a CPPN.
+excerpt: Read FFmpeg output in CSharp in a non-blocking way
 tags: CSharp, GUI, Avalonia, WPF, FFmpeg, stdout
 layout: default
 katex: false
