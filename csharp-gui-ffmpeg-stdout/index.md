@@ -25,7 +25,6 @@ process.StartInfo.RedirectStandardOutput = true;
 process.StartInfo.RedirectStandardError = true;
 process.Start();
 
-
 Task.Run(() => {
 	// read all text at once and write it to a file
 	string output = process.StandardError.ReadToEnd();
