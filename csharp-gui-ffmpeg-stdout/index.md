@@ -1,7 +1,7 @@
 ---
 title: How to read FFmpeg output in CSharp
 date: 2021-10-31
-excerpt: Read FFmpeg output in CSharp in a non-blocking way
+excerpt: A non-blocking way to read FFmpeg output in CSharp.
 tags: CSharp, GUI, Avalonia, WPF, FFmpeg, stdout
 layout: default
 katex: false
