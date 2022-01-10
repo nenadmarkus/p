@@ -21,6 +21,7 @@ Process process = new Process();
 process.StartInfo.FileName = "ffmpeg";             // or "ffmpeg.exe" if on MS Windows
 process.StartInfo.Arguments = args;                // ffmpeg args go here
 process.StartInfo.UseShellExecute = false;
+process.StartInfo.RedirectStandardInput = true;    // so that we can terminate the process
 process.StartInfo.RedirectStandardOutput = true;
 process.StartInfo.RedirectStandardError = true;
 process.Start();
@@ -33,3 +34,10 @@ Task.Run(() => {
 ```
 
 If needed, it is simple to modify the above snippet so that the output is read in a line-by-line fashion.
+
+If we would like to terminate the process, we can do this by writing `q` to its `stdin`.
+The following line of code works:
+
+```
+process.StandardInput.WriteLine("q");
+```

@@ -13,7 +13,6 @@ Also see my [homepage](https://nenadmarkus.github.io) for a list of projects rel
 
 A list of all published posts follows.
 
-* [10/2021 - How to read FFmpeg output in CSharp](csharp-gui-ffmpeg-stdout)
 * [12/2020 - Some experiments in learning signed distance fields from data](learning-signed-distance-fields)
 * [11/2020 - Generative graphics with random Fourier features](fourier-features-graphics)
 * [10/2020 - Sphere tracing CPPN-colored shapes](tracing-cppn-textured-surfaces)
