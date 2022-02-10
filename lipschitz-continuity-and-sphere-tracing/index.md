@@ -50,7 +50,7 @@ This is a **sufficient condition** to avoid the mentioned problem.
 If $$\lambda^*$$ is greater than $$1$$, we can replace $$f_S$$ by $$f_S/\lambda^*$$.
 The resulting function has an optimal Lipschitz constant, $$1$$.
 
-In the context of the [lambdaCAD tool](https://lambdacad.gitlab.io), we can get holes in the generated mesh if $$\lambda^* > 1$$.
+In the context of the [LambdaCAD tool](https://nenadmarkus.com/lambda), we can get holes in the generated mesh if $$\lambda^* > 1$$.
 This is demonstrated in the next section.
 
 ## An illustrative example
@@ -60,7 +60,7 @@ It is not hard to see that this is a sphere of radius $$2$$ centered at the orig
 The function $$F$$ is not Lipschitz continuous on $$\mathbb{R}^3$$ since it's derivative is not bounded (more on that later).
 However, if we constrain ourselves to a region $$[-2, +2]^3$$, then we can construct a signed distance bound $$f(x, y, z)=F(x, y, z)/\lambda$$ for $$\lambda=4$$.
 
-The following snippet is an implementation of $$f$$ for [https://lambdacad.gitlab.io](https://lambdacad.gitlab.io):
+The following snippet is an implementation of $$f$$ for [https://nenadmarkus.com/lambda](https://nenadmarkus.com/lambda):
 
 ```
 return function (x, y, z) {

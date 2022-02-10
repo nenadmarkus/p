@@ -2,7 +2,7 @@
 title: A fast algorithm for generating triangle meshes from signed distance bounds
 date: 2020-04-05
 excerpt: We discuss `gridhopping` (https://github.com/nenadmarkus/gridhopping) and its computational complexity.
-tags: gridhopping, lambdacad, sphere tracing, ray marching, marching cubes
+tags: gridhopping, LambdaCAD, sphere tracing, ray marching, marching cubes
 layout: default
 katex: true
 ---
@@ -21,7 +21,7 @@ where $$f_S^{-1}(0)=\{\mathbf{z}: f_S(\mathbf{z})=0\}$$.
 We are interested in approximating a shape defined by its signed distance bound into a triangle mesh.
 This post describes one such algorithm.
 
-A demo implementation can be tested at [https://lambdacad.gitlab.io](https://lambdacad.gitlab.io) and the open-source code is available at [https://github.com/nenadmarkus/gridhopping](https://github.com/nenadmarkus/gridhopping).
+A demo implementation can be tested at [https://nenadmarkus.com/lambda](https://nenadmarkus.com/lambda) and the open-source code is available at [https://github.com/nenadmarkus/gridhopping](https://github.com/nenadmarkus/gridhopping).
 
 In our case, the polygonization volume is an axis-aligned cube centered at the origin.
 This cube is partitioned into a rectangular grid with $$N^3$$ cells by subividing each of its sides into $$N$$ intervals of equal size.

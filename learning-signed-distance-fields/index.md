@@ -11,7 +11,7 @@ There has been considerable interest in learning-based methods for signed distan
 And this is lately especially true in the area of deep learning:
 see section "Implicit representation" at [https://github.com/subeeshvasu/Awsome_Deep_Geometry_Learning](https://github.com/subeeshvasu/Awsome_Deep_Geometry_Learning).
 
-Thus, it is warranted to investigate whether [gridhopping](../fast-algo-sdb-to-mesh) and [lambdaCAD](https://lambdacad.gitlab.io) are useful in this area.
+Thus, it is warranted to investigate whether [gridhopping](../fast-algo-sdb-to-mesh) and [LambdaCAD](https://nenadmarkus.com/lambda) are useful in this area.
 E.g., for extracting polygonal models from such representations for debugging or rendering purposes.
 
 References [1, 2, 3, 4] are a selection of interesting papers on geometric deep learning.
