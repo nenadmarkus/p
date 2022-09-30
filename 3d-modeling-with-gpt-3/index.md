@@ -27,11 +27,8 @@ Input (prompt) using natural language:
 Result:
 ```
 import sympy as sp
-
 x = sp.Symbol('x')
-
 f = (x**2-1)/(2*x-3)
-
 print(sp.diff(f, x))
 ```
 
