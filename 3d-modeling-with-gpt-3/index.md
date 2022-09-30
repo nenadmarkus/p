@@ -50,7 +50,7 @@ I.e., we cherry-pick some of the continuations produced by GPT-3.
 
 ### Task \#1: toy car
 
-We used the following input to GPT-3 (prompt):
+We use the following input to GPT-3 (prompt):
 
 <textarea style="width:100%;resize:none;" rows="16" disabled>
 LambdaCAD is a tiny parametric CAD tool written in JavaScript. It enables us to make 3D models using code!
@@ -82,7 +82,9 @@ return difference(intersection(union(s1, s2), cb), cy)
 Ok, that was cool. Let us now make a toy car.
 </textarea>
 
-Here is a typical continuation of the input (produced by GPT-3):
+We instruct the GPT-3 to produce a continuation of the above text.
+
+An example is given below.
 
 <textarea style="width:100%;resize:none;" rows="16" disabled>
 ```
@@ -105,11 +107,65 @@ LambdaCAD is still in the early stages of development. While it can be used to c
 </textarea>
 
 It seems rather sensible: the paragraph in the end is most certainly true :)
+And a human would also approach the modeling in such a way: make the parts first and then combine these in the end.
 
-However, input the generated code into [LambdaCAD](https://nenadmarkus.com/lambda), we get the following 3D model:
+However, if the generated code is input into [LambdaCAD](https://nenadmarkus.com/lambda), we get the following shape:
 
 <center>
 <img src="toycar_e1.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
+</center>
+
+Calling that a car is quite a stretch (to put it mildly).
+However, in some strange way, it does resemble a kind of a vehicle.
+
+Here is another example of a continuation (we use only the relevant part, i.e., the code):
+
+```
+let w = 0.7, h = 0.3, l = 1.2
+let car_frame = difference(cuboid(w, h, l), union(cylinder(0.1, h), cylinder(0.1, h)))
+let r = 0.25, s = 0.2
+let wheel1 = translate(
+  rotate(cylinder(r, s), 90, 0, 1, 0),
+  -0.4, -0.1, 0.35)
+let wheel2 = translate(
+  rotate(cylinder(r, s), 90, 0, 1, 0),
+  0.4, -0.1, 0.35)
+let wheel3 = translate(
+  rotate(cylinder(r, s), 90, 0, 1, 0),
+  -0.4, -0.1, -0.35)
+let wheel4 = translate(
+  rotate(cylinder(r, s), 90, 0, 1, 0),
+  0.4, -0.1, -0.35)
+return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
+```
+
+This is not a valid LambdaCAD program since the rotate operator has a different syntax
+(`rotate(S, angle, vx, vy, vz)` should be `rotate(S, [vx, vy, vz], angle)`).
+The GPT-3 could not possibly have known this from its limited training prompt, so we manually modify the code:
+
+```
+let w = 0.7, h = 0.3, l = 1.2
+let car_frame = difference(cuboid(w, h, l), union(cylinder(0.1, h), cylinder(0.1, h)))
+let r = 0.25, s = 0.2
+let wheel1 = translate(
+  rotate(cylinder(r, s), [0, 1, 0], 3.14/2),
+  -0.4, -0.1, 0.35)
+let wheel2 = translate(
+  rotate(cylinder(r, s), [0, 1, 0], 3.14/2),
+  0.4, -0.1, 0.35)
+let wheel3 = translate(
+  rotate(cylinder(r, s), [0, 1, 0], 3.14/2),
+  -0.4, -0.1, -0.35)
+let wheel4 = translate(
+  rotate(cylinder(r, s), [0, 1, 0], 3.14/2),
+  0.4, -0.1, -0.35)
+return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
+```
+
+The above code produces the following shape:
+
+<center>
+<img src="toycar_e2.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
 </center>
 
 ## Conclusion
