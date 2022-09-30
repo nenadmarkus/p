@@ -11,7 +11,8 @@ We instruct [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer
 
 The results are not great, but are interesting: with some prompt engineering, we can make them point in the right direction.
 
-Here are some (cherry-picked!) examples:
+Some (cherry-picked!) examples can be seen below.
+Can you guess what shape did we request from the model?
 
 <table>
   <tr>
