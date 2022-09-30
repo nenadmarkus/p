@@ -34,7 +34,7 @@ print(sp.diff(f, x))
 
 Output of the program: `2*x/(2*x-3) - 2*(x**2-1)/(2*x-3)**2`
 
-Please see the paper [2] for more examples.
+Please see the paper [2] (Figure 3) for more examples.
 Some are really impressive and definitely demonstrate a kind of intelligence.
 
 Our experiments will not be with the Codex language model, but with GPT-3 instead.
