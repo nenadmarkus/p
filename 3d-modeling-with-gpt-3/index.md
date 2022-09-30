@@ -241,9 +241,12 @@ return union(union(body, wheel1), wheel2)</pre></td>
 
 ## Conclusion
 
-It would be interesting to see what can we get with finetuning.
+There seem to be at least four possible ways to improve the results.
 
-OpenAI Codex might turn out to be a more capable tool for the problem of parametric 3D modeling.
+1. Use a larger language model (these are coming for sure!)
+2. Use a model specialized for code (like OpenAI Codex)
+3. Find better input prompts
+4. Finetune the model for the task
 
 ## References
 
