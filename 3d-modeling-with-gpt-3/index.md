@@ -170,7 +170,7 @@ The code above produces the following shape:
 
 Here are some more examples:
 
-<table border="3" align="center">
+<table align="center">
   <tr>
     <td><pre>let body = difference(
   cuboid(0.8, 0.4, 0.3),
@@ -221,9 +221,9 @@ let wheel2 = translate(
 return union(union(body, wheel1), wheel2)</code></td>
   </tr>
   <tr>
-    <td><center><img src="toycar_e3.png" width="30%"/></center></td>
-    <td><center><img src="toycar_e4.png" width="30%"/></center></td>
-    <td><center><img src="toycar_e5.png" width="30%"/></center></td>
+    <td><center><img src="toycar_e3.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e4.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e5.png" width="90%"/></center></td>
   </tr>
 </table>
 
