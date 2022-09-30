@@ -182,7 +182,7 @@ The code above produces the following shape:
 
 Here are some more interesting examples:
 
-<table align="center">
+<table align="center" width="99%">
   <tr>
     <td><pre>let body = difference(
   cuboid(0.8, 0.4, 0.3),
