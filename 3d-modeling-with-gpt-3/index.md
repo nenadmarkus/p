@@ -105,7 +105,7 @@ It seems rather sensible: the paragraph in the end is most certainly true :).
 However, input the generated code into [LambdaCAD](https://nenadmarkus.com/lambda), we get the following 3D model:
 
 <center>
-<img src="toycar_e1.png" style="width: 75%; max-width: 350px;" alt="A model of a toy car produced by GPT-3.">
+<img src="toycar_e1.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
 </center>
 
 ## Conclusion
