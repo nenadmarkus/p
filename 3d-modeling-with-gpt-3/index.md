@@ -32,6 +32,8 @@ f = (x**2-1)/(2*x-3)
 print(sp.diff(f, x))
 ```
 
+Output of the program: `2*x/(2*x-3) - 2*(x**2-1)/(2*x-3)**2`
+
 Please see the paper [2] for more examples.
 Some are really impressive and definitely demonstrate a kind of intelligence.
 
@@ -41,7 +43,7 @@ Unfortunately, access to Codex is limited for now and thus we stick to GPT-3.
 
 ## Experiments
 
-We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (union/intersection/difference).
+We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (the union/intersection/difference operations).
 
 ## Conclusion
 
