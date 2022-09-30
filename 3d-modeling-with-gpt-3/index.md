@@ -162,11 +162,70 @@ let wheel4 = translate(
 return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
 ```
 
-The above code produces the following shape:
+The code above produces the following shape:
 
 <center>
 <img src="toycar_e2.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
 </center>
+
+Here are some more examples:
+
+<table border="3" align="center">
+  <tr>
+    <td><pre>let body = difference(
+  cuboid(0.8, 0.4, 0.3),
+  translate(cuboid(0.4, 0.2, 0.3), 0, 0.2, 0)
+);
+let wheel1 = translate(
+  difference(
+    cylinder(0.1, 0.3),
+    translate(
+      cylinder(0.1, 0.3),
+      0, 0, 0.1
+    )
+  ),
+  -0.2, -0.3, 0
+)
+let wheel2 = translate(wheel1, +0.4, 0, 0);
+return union(body, wheel1, wheel2);</code></td>
+    <td><pre>let body = difference(
+  difference(
+    cuboid(1.0, 0.5, 0.3),
+    translate(cylinder(0.1, 0.5), -0.45, 0, 0),
+    translate(cylinder(0.1, 0.5), +0.45, 0, 0),
+  ),
+  translate(cylinder(0.3, 0.1), 0, 0.25, 0),
+);
+let wheel = translate(
+  cylinder(0.4, 0.1), 0, -0.25, 0
+);
+return union(
+  body,
+  translate(wheel, -0.5, 0, 0),
+  translate(wheel, +0.5, 0, 0),
+  translate(wheel, -0.5, 0, -0.3),
+  translate(wheel, +0.5, 0, -0.3),
+);</code></td>
+    <td><pre>let body = difference(
+  cuboid(0.9, 0.50, 0.30),
+  translate(
+    cuboid(0.3, 0.3, 0.3), -0.3, 0.20, 0
+  )
+)
+let wheel1 = translate(
+  cylinder(0.1, 0.2), 0.5, -0.2, 0.1
+)
+let wheel2 = translate(
+  cylinder(0.1, 0.2), 0.5, -0.2, -0.1
+)
+return union(union(body, wheel1), wheel2)</code></td>
+  </tr>
+  <tr>
+    <td><center><img src="toycar_e3.png" width="30%"/></center></td>
+    <td><center><img src="toycar_e4.png" width="30%"/></center></td>
+    <td><center><img src="toycar_e5.png" width="30%"/></center></td>
+  </tr>
+</table>
 
 ## Conclusion
 
