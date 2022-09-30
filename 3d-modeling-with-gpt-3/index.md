@@ -9,7 +9,18 @@ katex: false
 
 We instruct [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer program that generates a 3D model of an object.
 
-The results are not good, but are interesting: with some prompt engineering, we can make them point in the right direction.
+The results are not great, but are interesting: with some prompt engineering, we can make them point in the right direction.
+
+Here are some (cherry-picked!) examples:
+
+<table>
+  <tr>
+    <td><center><img src="toycar_e2.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e3.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e4.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e5.png" width="90%"/></center></td>
+  </tr>
+</table>
 
 ## Motivation
 
@@ -168,7 +179,7 @@ The code above produces the following shape:
 <img src="toycar_e2.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
 </center>
 
-Here are some more examples:
+Here are some more interesting examples:
 
 <table align="center">
   <tr>
