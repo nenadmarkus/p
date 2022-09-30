@@ -178,7 +178,7 @@ let wheel4 = translate(
 return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
 ```
 
-The code above produces the following shape:
+The code above produces the following shape (none edited manually!):
 
 <center>
 <img src="toycar_e2.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
