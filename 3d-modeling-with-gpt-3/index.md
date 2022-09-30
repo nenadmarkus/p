@@ -47,7 +47,7 @@ We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-so
 
 Input to GPT-3 (prompt):
 
-<textarea style="width:100%;" rows="27" disabled>
+<textarea style="width:100%;resize:none;" rows="27" disabled>
 LambdaCAD is a tiny parametric CAD tool written in JavaScript. It enables us to make 3D models using code!
 
 Here is a simple example of a sphere, centered at the origin, with the radius equal to 0.4:
