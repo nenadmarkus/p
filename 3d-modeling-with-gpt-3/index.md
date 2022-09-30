@@ -187,7 +187,7 @@ let wheel1 = translate(
   -0.2, -0.3, 0
 )
 let wheel2 = translate(wheel1, +0.4, 0, 0);
-return union(body, wheel1, wheel2);</code></td>
+return union(body, wheel1, wheel2);</pre></td>
     <td><pre>let body = difference(
   difference(
     cuboid(1.0, 0.5, 0.3),
@@ -205,7 +205,7 @@ return union(
   translate(wheel, +0.5, 0, 0),
   translate(wheel, -0.5, 0, -0.3),
   translate(wheel, +0.5, 0, -0.3),
-);</code></td>
+);</pre></td>
     <td><pre>let body = difference(
   cuboid(0.9, 0.50, 0.30),
   translate(
@@ -218,7 +218,7 @@ let wheel1 = translate(
 let wheel2 = translate(
   cylinder(0.1, 0.2), 0.5, -0.2, -0.1
 )
-return union(union(body, wheel1), wheel2)</code></td>
+return union(union(body, wheel1), wheel2)</pre></td>
   </tr>
   <tr>
     <td><center><img src="toycar_e3.png" width="90%"/></center></td>
