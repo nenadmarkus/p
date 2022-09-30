@@ -8,11 +8,12 @@ katex: false
 ---
 
 We instruct [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer program that generates a 3D model of an object.
+
 The results are not good, but are interesting: with some prompt engineering, we can make them point in the right direction.
 
 ## Motivation
 
-Due to much hyped results obtained by the MIT team in solving college-level math problems with OpenAI Codex [2],
+Due to much hyped results obtained by the MIT team in [solving college-level math problems with OpenAI Codex](https://news.mit.edu/2022/machine-learning-university-math-0803) [2],
 it makes us wonder if we can apply a similar approach to 3D parametric modeling.
 
 The main trick is to request a large language model ([OpenAI Codex](https://openai.com/blog/openai-codex/)) to write a computer program instead of a direct answer.
