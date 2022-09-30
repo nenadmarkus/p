@@ -45,9 +45,11 @@ Unfortunately, access to Codex is limited for now and thus we stick to GPT-3.
 
 We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (the union/intersection/difference operations).
 
-Input to GPT-3 (prompt):
+### Task \#1: toy car
 
-<textarea style="width:100%;resize:none;" rows="28" disabled>
+We used the following input to GPT-3 (prompt):
+
+<textarea style="width:100%;resize:none;" rows="16" disabled>
 LambdaCAD is a tiny parametric CAD tool written in JavaScript. It enables us to make 3D models using code!
 
 Here is a simple example of a sphere, centered at the origin, with the radius equal to 0.4:
@@ -75,6 +77,28 @@ return difference(intersection(union(s1, s2), cb), cy)
 ```
 
 Ok, that was cool. Let us now make a toy car.
+</textarea>
+
+Here is a typical output:
+
+<textarea style="width:100%;resize:none;" rows="16" disabled>
+```
+// Create the body of the car
+let body = translate(cuboid(1.5, 1, 0.5), 0, 0.25, 0)
+// Add the wheels
+let r = 0.2, h = 0.1
+let w1 = translate(cylinder(r, h), -0.6, -0.5, 0)
+let w2 = translate(cylinder(r, h), +0.6, -0.5, 0)
+// Add the windscreen
+let ws = translate(cuboid(1, 0.5, 0.1), 0, 0.75, 0)
+// Add the headlights
+let h1 = translate(sphere(0.1), -0.5, 0.5, 0)
+let h2 = translate(sphere(0.1), +0.5, 0.5, 0)
+// Join everything together
+return union(body, union(w1, w2), ws, union(h1, h2))
+```
+
+LambdaCAD is still in the early stages of development. While it can be used to create simple solid models, it lacks many features that are found in traditional CAD tools. However, it is still possible to create some cool 3D models with LambdaCAD!
 </textarea>
 
 ## Conclusion
