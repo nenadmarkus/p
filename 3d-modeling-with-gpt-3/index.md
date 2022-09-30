@@ -45,6 +45,9 @@ Unfortunately, access to Codex is limited for now and thus we stick to GPT-3.
 
 We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (the union/intersection/difference operations).
 
+Note that we show the more sensible and interesting results.
+I.e., we cherry-pick some of the continuations produced by GPT-3.
+
 ### Task \#1: toy car
 
 We used the following input to GPT-3 (prompt):
