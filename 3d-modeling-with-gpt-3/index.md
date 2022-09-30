@@ -20,7 +20,10 @@ The main trick is to request a large language model ([OpenAI Codex](https://open
 This offloads the computational part to a ("mechanical") programming language like Python and solves just the "intelligence" part.
 To illustrate this, please see the example below taken from the paper [2].
 
-Input (prompt) using natural language: Using `sympy` find the derivative of the function using the definition of the derivative. `f(x) = (x**2-1)/(2*x-3)`
+Input (prompt) using natural language:
+
+> Using `sympy` find the derivative of the function using the definition of the derivative. `f(x) = (x**2-1)/(2*x-3)`
+
 Result:
 ```
 import sympy as sp
