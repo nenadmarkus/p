@@ -53,14 +53,18 @@ Our experiments will not be with the Codex language model, but with GPT-3 instea
 The differene between these two models is that Codex is specialized for computer code and thus might be more useful for our task.
 Unfortunately, access to Codex is limited for now and thus we stick to GPT-3.
 
-## Experiments
+## Method
 
-We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (the union/intersection/difference operations).
+We use [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (the union/intersection/difference operations).
+
+We first give GPT-3 a short introduction to LambdaCAD, its syntax and give a couple of simple examples.
+After that we specify the shape we would like to generate and let GPT-3 produce a continuation of the input text prompt.
+In the end, we extract the shape-as-code found in the output.
 
 Note that we show the more sensible and interesting results.
-I.e., we cherry-pick some of the continuations produced by GPT-3.
+I.e., we cherry-pick some of the continuations produced by GPT-3 and leave the uninteresing/wrong ones out.
 
-### Task \#1: toy car
+## Example \#1: a toy car
 
 We use the following input to GPT-3 (prompt):
 
