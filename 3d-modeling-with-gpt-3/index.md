@@ -140,7 +140,7 @@ return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
 ```
 
 This is not a valid LambdaCAD program since the rotate operator has a different syntax
-(`rotate(S, angle, vx, vy, vz)` should be `rotate(S, [vx, vy, vz], angle)`).
+(`rotate(S, angle in degrees, vx, vy, vz)` should be `rotate(S, [vx, vy, vz], angle in radians)`).
 The GPT-3 could not possibly have known this from its limited training prompt, so we manually modify the code:
 
 ```
