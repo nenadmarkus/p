@@ -52,42 +52,42 @@ I.e., we cherry-pick some of the continuations produced by GPT-3.
 
 We use the following input to GPT-3 (prompt):
 
-<textarea style="width:100%;resize:none;" rows="16" disabled>
+```
 LambdaCAD is a tiny parametric CAD tool written in JavaScript. It enables us to make 3D models using code!
 
 Here is a simple example of a sphere, centered at the origin, with the radius equal to 0.4:
 
-```
+\`\`\`
 return sphere(0.4);
-```
+\`\`\`
 
 We can translate the sphere with the following set of commands:
 
-```
+\`\`\`
 let x=0.1, y=0.2, z=-0.3;
 return translate(sphere(0.4), x, y, z);
-```
+\`\`\`
 
 Next, let us create a union of two spheres, intersect that with a cuboid and subtract a cylinder!
 
-```
+\`\`\`
 let s1 = translate(sphere(0.2), -0.2, 0, 0);
 let s2 = translate(sphere(0.2), +0.2, 0, 0);
 let cb = cuboid(0.5, 0.25, 0.25)
 let r=0.1, h=0.5
 let cy = cylinder(r, h)
 return difference(intersection(union(s1, s2), cb), cy)
-```
+\`\`\`
 
 Ok, that was cool. Let us now make a toy car.
-</textarea>
+```
 
 We instruct the GPT-3 to produce a continuation of the above text.
 
 An example is given below.
 
-<textarea style="width:100%;resize:none;" rows="16" disabled>
 ```
+\`\`\`
 // Create the body of the car
 let body = translate(cuboid(1.5, 1, 0.5), 0, 0.25, 0)
 // Add the wheels
@@ -101,10 +101,10 @@ let h1 = translate(sphere(0.1), -0.5, 0.5, 0)
 let h2 = translate(sphere(0.1), +0.5, 0.5, 0)
 // Join everything together
 return union(body, union(w1, w2), ws, union(h1, h2))
-```
+\`\`\`
 
 LambdaCAD is still in the early stages of development. While it can be used to create simple solid models, it lacks many features that are found in traditional CAD tools. However, it is still possible to create some cool 3D models with LambdaCAD!
-</textarea>
+```
 
 It seems rather sensible: the paragraph in the end is most certainly true :)
 And a human would also approach the modeling in such a way: make the parts first and then combine these in the end.
