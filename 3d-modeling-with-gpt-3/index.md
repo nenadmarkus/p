@@ -47,35 +47,35 @@ We will be using [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-so
 
 Input to GPT-3 (prompt):
 
-<textarea style="width:100%;resize:none;" rows="27" disabled>
+>>>
 LambdaCAD is a tiny parametric CAD tool written in JavaScript. It enables us to make 3D models using code!
 
 Here is a simple example of a sphere, centered at the origin, with the radius equal to 0.4:
 
-```
+` ``` `
 return sphere(0.4);
-```
+` ``` `
 
 We can translate the sphere with the following set of commands:
 
-```
+` ``` `
 let x=0.1, y=0.2, z=-0.3;
 return translate(sphere(0.4), x, y, z);
-```
+` ``` `
 
 Next, let us create a union of two spheres, intersect that with a cuboid and subtract a cylinder!
 
-```
+` ``` `
 let s1 = translate(sphere(0.2), -0.2, 0, 0);
 let s2 = translate(sphere(0.2), +0.2, 0, 0);
 let cb = cuboid(0.5, 0.25, 0.25)
 let r=0.1, h=0.5
 let cy = cylinder(r, h)
 return difference(intersection(union(s1, s2), cb), cy)
-```
+` ``` `
 
 Ok, that was cool. Let us now make a toy car.
-</textarea>
+>>>
 
 ## Conclusion
 
