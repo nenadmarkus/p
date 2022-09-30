@@ -79,7 +79,7 @@ return difference(intersection(union(s1, s2), cb), cy)
 Ok, that was cool. Let us now make a toy car.
 </textarea>
 
-Here is a typical output:
+Here is a typical continuation of the input (produced by GPT-3):
 
 <textarea style="width:100%;resize:none;" rows="16" disabled>
 ```
@@ -100,6 +100,11 @@ return union(body, union(w1, w2), ws, union(h1, h2))
 
 LambdaCAD is still in the early stages of development. While it can be used to create simple solid models, it lacks many features that are found in traditional CAD tools. However, it is still possible to create some cool 3D models with LambdaCAD!
 </textarea>
+
+It seems rather sensible (the paragraph in the end is most certainly true :).
+However, input the generated code into [LambdaCAD](https://nenadmarkus.com/lambda), we get the following 3D model:
+
+
 
 ## Conclusion
 
