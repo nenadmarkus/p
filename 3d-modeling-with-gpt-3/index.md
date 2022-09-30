@@ -51,6 +51,6 @@ OpenAI Codex might turn out to be a more capable tool for the problem of paramet
 
 ## References
 
-[1] OpenAI. Language Models are Few-Shot Learners. <https://arxiv.org/abs/2005.14165>, 2020
+[1] The OpenAI team. Language Models are Few-Shot Learners. <https://arxiv.org/abs/2005.14165>, 2020
 
 [2] Drori et al. A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level. <https://arxiv.org/abs/2112.15594>, 2021
