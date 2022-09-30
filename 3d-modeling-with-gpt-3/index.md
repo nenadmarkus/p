@@ -101,10 +101,12 @@ return union(body, union(w1, w2), ws, union(h1, h2))
 LambdaCAD is still in the early stages of development. While it can be used to create simple solid models, it lacks many features that are found in traditional CAD tools. However, it is still possible to create some cool 3D models with LambdaCAD!
 </textarea>
 
-It seems rather sensible (the paragraph in the end is most certainly true :).
+It seems rather sensible: the paragraph in the end is most certainly true :).
 However, input the generated code into [LambdaCAD](https://nenadmarkus.com/lambda), we get the following 3D model:
 
-
+<center>
+<img src="toycar_e1.png" style="width: 75%; max-width: 350px;" alt="A model of a toy car produced by GPT-3.">
+</center>
 
 ## Conclusion
 
