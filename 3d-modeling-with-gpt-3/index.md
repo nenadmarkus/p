@@ -244,7 +244,7 @@ return union(union(body, wheel1), wheel2)</pre></td>
   </tr>
 </table>
 
-## Examples \#2: toy car, but with more detailed prompt
+## Examples \#2: toy car -- more instructions in the prompt
 
 The prompt as before, but we modify the end part to
 
