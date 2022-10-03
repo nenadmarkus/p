@@ -250,6 +250,41 @@ The prompt as before, but we modify the end part to
 
 > Ok, that was cool. Let us now make a toy car. First, we use a cuboid to make a chassis. Next, we make each of the four wheels of our car by translating a cylinder and attaching it to the chassis.
 
+The results are now repeatable.
+In all the tried prompt runs, we got reasonable output.
+See below for some examples.
+
+<table align="center" style="width:100%">
+  <tr>
+    <td><pre>let cb = cuboid(1.0,0.5,0.5);
+let r = 0.1, h = 0.2;
+let w1 = translate(cylinder(r, h), -0.2, -0.25, 0.2);
+let w2 = translate(cylinder(r, h), 0.2, -0.25, 0.2);
+let w3 = translate(cylinder(r, h), -0.2, -0.25, -0.2);
+let w4 = translate(cylinder(r, h), 0.2, -0.25, -0.2);
+return union(cb, w1, w2, w3, w4);</pre></td>
+    <td><pre>let cb = cuboid(0.5, 0.2, 0.2);
+let r=0.1, h=0.1;
+let w1 = translate(cylinder(r, h), +0.2, -0.1, +0.1);
+let w2 = translate(cylinder(r, h), +0.2, -0.1, -0.1);
+let w3 = translate(cylinder(r, h), -0.2, -0.1, +0.1);
+let w4 = translate(cylinder(r, h), -0.2, -0.1, -0.1);
+return union(cb, w1, w2, w3, w4);</pre></td>
+    <td><pre>let ch = translate(cuboid(1, 0.5, 0.5), 0.0, -0.25, 0.0);
+let r=0.25, h=0.1;
+let wh1 = translate(cylinder(r, h), -0.25, -0.5, -0.25);
+let wh2 = translate(cylinder(r, h), +0.25, -0.5, -0.25);
+let wh3 = translate(cylinder(r, h), -0.25, -0.5, +0.25);
+let wh4 = translate(cylinder(r, h), +0.25, -0.5, +0.25);
+return union(ch, wh1, wh2, wh3, wh4);</pre></td>
+  </tr>
+  <tr>
+    <td><center><img src="toycar_e6.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e7.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e8.png" width="90%"/></center></td>
+  </tr>
+</table>
+
 ## Conclusion
 
 There seem to be at least four possible ways to improve the results.
