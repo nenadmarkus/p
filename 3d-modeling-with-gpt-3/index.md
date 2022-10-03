@@ -244,6 +244,12 @@ return union(union(body, wheel1), wheel2)</pre></td>
   </tr>
 </table>
 
+## Examples \#2: toy car, but with more detailed prompt
+
+The prompt as before, but we modify the end part to
+
+> Ok, that was cool. Let us now make a toy car. First, we use a cuboid to make a chassis. Next, we make each of the four wheels of our car by translating a cylinder and attaching it to the chassis.
+
 ## Conclusion
 
 There seem to be at least four possible ways to improve the results.
