@@ -13,7 +13,6 @@ With prompt engineering, we can make the results point in the right direction.
 Even though this is still far away from a practical solution, it is a step in the right direction.
 
 Some examples can be seen below.
-Can you guess what shape did we request from the model?
 
 <table>
   <tr>
@@ -65,9 +64,12 @@ In the end, we extract the shape-as-code found in the output.
 Note that we show the more sensible and interesting results.
 In other words, we cherry-pick some of the continuations produced by GPT-3 and leave the uninteresing/wrong ones out.
 
-## Example \#1: a toy car
+## Making a toy car
 
-We use the following input to GPT-3 (prompt):
+In the prompt, we first introduce LambdaCAD and provide examples.
+This is a few-shot learning setting that prepares GPT-3 for our task.
+Next, we provide a textual description of a 3D model that we would like it to generate.
+See the exact input below.
 
 ````
 LambdaCAD is a tiny parametric CAD tool written in JavaScript. It enables us to make 3D models using code!
