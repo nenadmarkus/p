@@ -2,32 +2,31 @@
 title: Parametric 3D modeling with GPT-3
 date: 2022-09-30
 excerpt: With some amount of prompt engineering, we can get something that points in the right direction.
-tags: lambdaCAD, GPT-3, prompt engineering
+tags: LambdaCAD, GPT-3, prompt engineering
 layout: default
 katex: false
 ---
 
-We instruct [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer program that generates a 3D model of an object.
+We instruct [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer program for [LambdaCAD](https://nenadmarkus.com/lambda/) that generates a 3D model of an object.
 
-With some prompt engineering, we can make the results point in the right direction.
-Even though this is still far away from a practical solution.
+With prompt engineering, we can make the results point in the right direction.
+Even though this is still far away from a practical solution, it is a step in the right direction.
 
-Some (cherry-picked!) examples can be seen below.
+Some examples can be seen below.
 Can you guess what shape did we request from the model?
 
 <table>
   <tr>
     <td><center><img src="toycar_e2.png" width="90%"/></center></td>
-    <td><center><img src="toycar_e3.png" width="90%"/></center></td>
     <td><center><img src="toycar_e4.png" width="90%"/></center></td>
-    <td><center><img src="toycar_e5.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e6.png" width="90%"/></center></td>
+    <td><center><img src="toycar_e7.png" width="90%"/></center></td>
   </tr>
 </table>
 
 ## Motivation
 
-Due to much hyped results obtained by the MIT team in [solving college-level math problems with OpenAI Codex](https://news.mit.edu/2022/machine-learning-university-math-0803) [2],
-it makes us wonder if we can apply a similar approach to 3D parametric modeling.
+The MIT team's successful use of OpenAI Codex [2] to solve college-level math problems (see [here](https://news.mit.edu/2022/machine-learning-university-math-0803)) has made us wonder if a similar approach can be applied to 3D parametric modeling.
 
 The main trick is to request a large language model ([OpenAI Codex](https://openai.com/blog/openai-codex/)) to write a computer program instead of a direct answer.
 This offloads the computational part to a ("mechanical") programming language like Python and solves just the "intelligence" part.
@@ -56,14 +55,15 @@ Unfortunately, access to Codex is limited for now and thus we stick to GPT-3.
 
 ## Method
 
-We use [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool in which you describe shapes with geometric primitives and their combimantions (the union/intersection/difference operations).
+We use [LambdaCAD](https://nenadmarkus.com/lambda), a free and open-source JavaScript-based 3D CAD tool.
+With LambdaCAD, you describe shapes with geometric primitives and their combinations (the union/intersection/difference operations).
 
 We first give GPT-3 a short introduction to LambdaCAD, its syntax and give a couple of simple examples.
 After that we specify the shape we would like to generate and let GPT-3 produce a continuation of the input text prompt.
 In the end, we extract the shape-as-code found in the output.
 
 Note that we show the more sensible and interesting results.
-I.e., we cherry-pick some of the continuations produced by GPT-3 and leave the uninteresing/wrong ones out.
+In other words, we cherry-pick some of the continuations produced by GPT-3 and leave the uninteresing/wrong ones out.
 
 ## Example \#1: a toy car
 
@@ -248,7 +248,7 @@ return union(union(body, wheel1), wheel2)</pre></td>
 
 The prompt as before, but we modify the end part to
 
-> Ok, that was cool. Let us now make a toy car. First, we use a cuboid to make a chassis. Next, we make each of the four wheels of our car by translating a cylinder and attaching it to the chassis.
+> "Ok, that was cool. Let us now make a toy car. First, we use a cuboid to make a chassis. Next, we make each of the four wheels of our car by translating a cylinder and attaching it to the chassis."
 
 The results are now repeatable.
 In all the tried prompt runs, we got reasonable output.
