@@ -158,7 +158,7 @@ let wheel4 = translate(
 return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
 ```
 
-(We had to manually replace `rotate(S, angle in degrees, vx, vy, vz)` with `rotate(S, [vx, vy, vz], angle in radians)`.
+(We manually replaced `rotate(S, angle in degrees, vx, vy, vz)` with `rotate(S, [vx, vy, vz], angle in radians)`.
 The GPT-3 could not have known this syntax from its limited training prompt.)
 
 Here is the result:
@@ -226,7 +226,7 @@ return union(union(body, wheel1), wheel2)</pre></td>
   </tr>
 </table>
 
-## Examples \#2: toy car -- more instructions in the prompt
+## Adding more instructions to the prompt
 
 The prompt as before, but we modify the end part to
 
