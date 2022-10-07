@@ -13,6 +13,7 @@ Also see my [homepage](https://nenadmarkus.github.io) for a list of projects rel
 
 A list of all published posts follows.
 
+* [10/2022 - Parametric 3D modeling with GPT-3](3d-with-gpt-3)
 * [12/2020 - Some experiments in learning signed distance fields from data](learning-signed-distance-fields)
 * [11/2020 - Generative graphics with random Fourier features](fourier-features-graphics)
 * [10/2020 - Sphere tracing CPPN-colored shapes](tracing-cppn-textured-surfaces)
