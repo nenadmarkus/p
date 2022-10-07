@@ -125,8 +125,8 @@ return union(body, union(w1, w2), ws, union(h1, h2))
 LambdaCAD is still in the early stages of development. While it can be used to create simple solid models, it lacks many features that are found in traditional CAD tools. However, it is still possible to create some cool 3D models with LambdaCAD!
 ````
 
-It seems rather sensible: the paragraph in the end is most certainly true :)
-And a human would also approach the modeling in such a way: make the parts first and then combine these in the end.
+The continuation seems sensible: the paragraph in the end is certainly true :)
+A human would approach modeling in the same way by first making the parts and then combining them.
 
 However, if the generated code is input into [LambdaCAD](https://nenadmarkus.com/lambda), we get the following shape:
 
@@ -134,7 +134,7 @@ However, if the generated code is input into [LambdaCAD](https://nenadmarkus.com
 <img src="toycar_e1.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
 </center>
 
-Calling that a car is quite a stretch (to put it mildly).
+That is not a car.
 However, in some strange way, it does resemble a kind of a vehicle.
 
 Here is another example of a continuation (we use only the relevant part, i.e., the code):
@@ -144,29 +144,6 @@ let w = 0.7, h = 0.3, l = 1.2
 let car_frame = difference(cuboid(w, h, l), union(cylinder(0.1, h), cylinder(0.1, h)))
 let r = 0.25, s = 0.2
 let wheel1 = translate(
-  rotate(cylinder(r, s), 90, 0, 1, 0),
-  -0.4, -0.1, 0.35)
-let wheel2 = translate(
-  rotate(cylinder(r, s), 90, 0, 1, 0),
-  0.4, -0.1, 0.35)
-let wheel3 = translate(
-  rotate(cylinder(r, s), 90, 0, 1, 0),
-  -0.4, -0.1, -0.35)
-let wheel4 = translate(
-  rotate(cylinder(r, s), 90, 0, 1, 0),
-  0.4, -0.1, -0.35)
-return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
-```
-
-This is not a valid LambdaCAD program since the rotate operator has a different syntax
-(`rotate(S, angle in degrees, vx, vy, vz)` should be `rotate(S, [vx, vy, vz], angle in radians)`).
-The GPT-3 could not possibly have known this from its limited training prompt, so we manually modify the code:
-
-```
-let w = 0.7, h = 0.3, l = 1.2
-let car_frame = difference(cuboid(w, h, l), union(cylinder(0.1, h), cylinder(0.1, h)))
-let r = 0.25, s = 0.2
-let wheel1 = translate(
   rotate(cylinder(r, s), [0, 1, 0], 3.14/2),
   -0.4, -0.1, 0.35)
 let wheel2 = translate(
@@ -181,7 +158,10 @@ let wheel4 = translate(
 return union(car_frame, union(wheel1, union(wheel2, union(wheel3, wheel4))))
 ```
 
-The code above produces the following shape (none edited manually!):
+(We had to manually replace `rotate(S, angle in degrees, vx, vy, vz)` with `rotate(S, [vx, vy, vz], angle in radians)`.
+The GPT-3 could not have known this syntax from its limited training prompt.)
+
+Here is the result:
 
 <center>
 <img src="toycar_e2.png" style="width: 75%; max-width: 256px;" alt="A model of a toy car produced by GPT-3.">
