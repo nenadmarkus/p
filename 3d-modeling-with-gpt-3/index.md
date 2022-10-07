@@ -171,7 +171,7 @@ Here are some more interesting examples:
 
 <table align="center">
   <tr>
-    <td><pre>let body = difference(
+    <td><pre style="font-size:0.6em">let body = difference(
   cuboid(0.8, 0.4, 0.3),
   translate(cuboid(0.4, 0.2, 0.3), 0, 0.2, 0)
 );
@@ -187,7 +187,7 @@ let wheel1 = translate(
 )
 let wheel2 = translate(wheel1, +0.4, 0, 0);
 return union(body, wheel1, wheel2);</pre></td>
-    <td><pre>let body = difference(
+    <td><pre style="font-size:0.6em">let body = difference(
   difference(
     cuboid(1.0, 0.5, 0.3),
     translate(cylinder(0.1, 0.5), -0.45, 0, 0),
@@ -204,7 +204,7 @@ return union(
   translate(wheel, +0.5, 0, 0),
   translate(wheel, -0.5, 0, -0.3),
   translate(wheel, +0.5, 0, -0.3),
-);</pre></td>
+);</pre style="font-size:0.6em"></td>
     <td><pre>let body = difference(
   cuboid(0.9, 0.50, 0.30),
   translate(
@@ -238,21 +238,21 @@ See below for some examples.
 
 <table align="center">
   <tr>
-    <td><pre>let cb = cuboid(1.0,0.5,0.5);
+    <td><pre style="font-size:0.6em">let cb = cuboid(1.0,0.5,0.5);
 let r = 0.1, h = 0.2;
 let w1 = translate(cylinder(r, h), -0.2, -0.25, 0.2);
 let w2 = translate(cylinder(r, h), 0.2, -0.25, 0.2);
 let w3 = translate(cylinder(r, h), -0.2, -0.25, -0.2);
 let w4 = translate(cylinder(r, h), 0.2, -0.25, -0.2);
 return union(cb, w1, w2, w3, w4);</pre></td>
-    <td><pre>let cb = cuboid(0.5, 0.2, 0.2);
+    <td><pre style="font-size:0.6em">let cb = cuboid(0.5, 0.2, 0.2);
 let r=0.1, h=0.1;
 let w1 = translate(cylinder(r, h), +0.2, -0.1, +0.1);
 let w2 = translate(cylinder(r, h), +0.2, -0.1, -0.1);
 let w3 = translate(cylinder(r, h), -0.2, -0.1, +0.1);
 let w4 = translate(cylinder(r, h), -0.2, -0.1, -0.1);
 return union(cb, w1, w2, w3, w4);</pre></td>
-    <td><pre>let ch = translate(cuboid(1, 0.5, 0.5), 0.0, -0.25, 0.0);
+    <td><pre style="font-size:0.6em">let ch = translate(cuboid(1, 0.5, 0.5), 0.0, -0.25, 0.0);
 let r=0.25, h=0.1;
 let wh1 = translate(cylinder(r, h), -0.25, -0.5, -0.25);
 let wh2 = translate(cylinder(r, h), +0.25, -0.5, -0.25);
