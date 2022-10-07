@@ -169,7 +169,7 @@ Here is the result:
 
 Here are some more interesting examples:
 
-<table align="center" style="width:100%">
+<table align="center">
   <tr>
     <td><pre>let body = difference(
   cuboid(0.8, 0.4, 0.3),
@@ -236,7 +236,7 @@ The results are now repeatable.
 In all the tried prompt runs, we got reasonable output.
 See below for some examples.
 
-<table align="center" style="width:100%">
+<table align="center">
   <tr>
     <td><pre>let cb = cuboid(1.0,0.5,0.5);
 let r = 0.1, h = 0.2;
