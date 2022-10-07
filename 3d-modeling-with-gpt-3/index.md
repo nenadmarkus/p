@@ -204,8 +204,8 @@ return union(
   translate(wheel, +0.5, 0, 0),
   translate(wheel, -0.5, 0, -0.3),
   translate(wheel, +0.5, 0, -0.3),
-);</pre style="font-size:0.6em"></td>
-    <td><pre>let body = difference(
+);</pre></td>
+    <td><pre style="font-size:0.6em">let body = difference(
   cuboid(0.9, 0.50, 0.30),
   translate(
     cuboid(0.3, 0.3, 0.3), -0.3, 0.20, 0
