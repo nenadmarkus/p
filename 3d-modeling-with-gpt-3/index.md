@@ -269,7 +269,9 @@ return union(ch, wh1, wh2, wh3, wh4);</pre></td>
 
 ## Conclusion
 
-There seem to be at least four possible ways to improve the results.
+The results might not look great, but do indicate potential.
+
+There seem to be at least four possible ways for improvement.
 
 1. Use a larger language model (these are coming for sure!)
 2. Use a model specialized for code (like OpenAI Codex)
