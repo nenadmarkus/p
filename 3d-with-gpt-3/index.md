@@ -7,12 +7,13 @@ layout: default
 katex: false
 ---
 
-We instruct [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer program for [LambdaCAD](https://nenadmarkus.com/lambda/) that generates a 3D model of an object.
+We experiment with using prompt engineering to guide [GPT-3](https://en.wikipedia.org/wiki/GPT-3) [1] to write a computer program for [LambdaCAD](https://nenadmarkus.com/lambda/).
 
-With prompt engineering, we can make the results point in the right direction.
-Even though this is still far away from a practical solution, it is a step in the right direction.
+This methodology enables us to generate a 3D model of an object based on its textual description.
 
-Some examples can be seen below.
+While this is not yet a practical solution, it might be a viable step forward in the field of computer-aided design.
+
+Below, you can see some examples of 3D models generated using this method.
 
 <table>
   <tr>
