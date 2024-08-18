@@ -62,7 +62,7 @@ These signaling pathways ultimately enable the specialization of different embry
 Since Mother Nature successfully produces impressive biological machinery in such a manner, it is interesting to ponder if we can immitate Her powers programatically.
 The work of professor Stanley, CPPNs, is one of the frameworks that attempts to mimic the mentioned developmental processes in a simplified manner and enable their easy implementation on computers.
 
-A CPPN can be seen as a function $`f`$ that maps a spatial position into intensity or, more generally, color.
+A CPPN can be seen as a function $f$ that maps a spatial position into intensity or, more generally, color.
 For example, in a 2D space, this can be written down as
 
 $$
@@ -70,8 +70,8 @@ $$
 	f(x, y)
 $$
 
-where $`r, g, b\in[0, 1]`$ are the red, green and blue intensity values assigned to spatial position $`(x, y)`$.
-Sliding this function over all relevant $`(x, y)`$ pairs has the potential to produce interesting visual patterns, which, of course, depend on the properties of the mapping $`f`$.
+where $r, g, b\in[0, 1]$ are the red, green and blue intensity values assigned to spatial position $(x, y)$.
+Sliding this function over all relevant $(x, y)$ pairs has the potential to produce interesting visual patterns, which, of course, depend on the properties of the mapping $f$.
 This makes CPPNs similar to [domain warping](https://www.iquilezles.org/www/articles/warp/warp.htm),
 a technique used in computer graphics for procedural generation of textures and geometry.
 Another related concept are fractal shapes, such as the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set).
@@ -101,10 +101,10 @@ This will serve as an introduction to the sections that follow.
 
 ## Equations behind our CPPNs
 
-Let us generate an abstract image of size `nrows`$`\times`$`ncols`.
-To that end, we will pass an encoding of the location of each pixel through the function $`f`$ that specifies the CPNN.
+Let us generate an abstract image of size `nrows$\times$ncols`.
+To that end, we will pass an encoding of the location of each pixel through the function $f$ that specifies the CPNN.
 
-The function $`f`$ will be implemented as an $`N`$-layer neural network in our experiments.
+The function $f$ will be implemented as an $N$-layer neural network in our experiments.
 For simplicity, we limit ourselves to the following architecture:
 
 $$
@@ -113,11 +113,11 @@ $$
 	\;\;\;l=1, 2, \ldots, L
 $$
 
-In the iteration specified above, the output of the $`n`$th layer is produced by applying an elementwise hyperbolic tangent nonlinearity ($`\tanh`$) to the vector obtained by multiplying the matrix of weights, $`\mathbf{W}_{l}`$, with the input $`\mathbf{h}_{l-1}`$.
+In the iteration specified above, the output of the $n$th layer is produced by applying an elementwise hyperbolic tangent nonlinearity ($\tanh$) to the vector obtained by multiplying the matrix of weights, $\mathbf{W}_{l}$, with the input $\mathbf{h}_{l-1}$.
 
-The input to the network, $`\mathbf{h}_{0}`$ contains the information about the spatial location of the pixel under current consideration.
-Earlier in this post, we used $`\mathbf{h}_{0}=(x, y)^T`$.
-However, we also pass in a radius term, $`\sqrt{x^2 + y^2}`$, to make the visualization more interesting:
+The input to the network, $\mathbf{h}_{0}$ contains the information about the spatial location of the pixel under current consideration.
+Earlier in this post, we used $\mathbf{h}_{0}=(x, y)^T$.
+However, we also pass in a radius term, $\sqrt{x^2 + y^2}$, to make the visualization more interesting:
 
 $$
 	\mathbf{h}_{0}=
@@ -128,27 +128,27 @@ $$
 	\end{pmatrix}
 $$
 
-The output of the network, $`\mathbf{h}_{L}\in[-1, 1]^3`$, is rescaled to $`[0, 1]^3`$ with a simple affine transform:
+The output of the network, $\mathbf{h}_{L}\in[-1, 1]^3$, is rescaled to $[0, 1]^3$ with a simple affine transform:
 
 $$
 	\mathbf{h}_{L}'=\frac{1}{2}(\mathbf{h}_{L}+1)
 $$
 
-The components of $`\mathbf{h}_{L}'`$ are interpreted as red, green and blue pixel intensities.
-These intensities are written to the output array (image) at the location $`(x, y)`$.
+The components of $\mathbf{h}_{L}'$ are interpreted as red, green and blue pixel intensities.
+These intensities are written to the output array (image) at the location $(x, y)$.
 
-For simplicity, we fix the size of all the intermediate representations to $`H`$, i.e.,
-$`\mathbf{h}_{2}, \mathbf{h}_{3}, \ldots, \mathbf{h}_{L-1}\in\mathbb{R}^H`$.
+For simplicity, we fix the size of all the intermediate representations to $H$, i.e.,
+$\mathbf{h}_{2}, \mathbf{h}_{3}, \ldots, \mathbf{h}_{L-1}\in\mathbb{R}^H$.
 Thus, the parameters of this image-generation process are
 
-* the number of layers, $`L`$;
-* sizes of hidden representations, $`H`$;
-* parameters (weights, elements) of the matrices $`\mathbf{W}_l`$.
+* the number of layers, $L$;
+* sizes of hidden representations, $H$;
+* parameters (weights, elements) of the matrices $\mathbf{W}_l$.
 
-The matrices $`\mathbf{W}_l`$ can be tuned in such a way that the network approximates some predefined image,
+The matrices $\mathbf{W}_l$ can be tuned in such a way that the network approximates some predefined image,
 such as in [this blog post](https://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html).
 However, we are interested in abstract visualizations that can be produced with fixed but randomly generated weights.
-It follows from this that all the parameters in $`\mathbf{W}_l`$ can be specified by the seed of the [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) used to produce them.
+It follows from this that all the parameters in $\mathbf{W}_l$ can be specified by the seed of the [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) used to produce them.
 Thus, our abstract images can be generated (or reproduced) with a small computer program, i.e., their [Kolmogorov complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity) is low.
 Maybe this is the reason many people find the visualizations artistically appealing
 (see the article on [low-complexity art](https://en.wikipedia.org/wiki/Low-complexity_art) or the [original work](http://people.idsia.ch/~juergen/locoart/locoart.html) by Juergen Schmidhuber).
@@ -194,7 +194,7 @@ import cv2
 cv2.imwrite('sample.jpg', results)
 ```
 
-Some samples of abstract images generated with the above code for $`H=4, 8, 16`$ and $`32`$.
+Some samples of abstract images generated with the above code for $H=4, 8, 16$ and $32$.
 
 <center>
 <img src="4.jpg" style="width: 20%;" alt="CPPN art with N=8, H=4">
@@ -210,8 +210,8 @@ Some samples of abstract images generated with the above code for $`H=4, 8, 16`$
 <img src="g32.jpg" style="width: 20%;" alt="grayscale CPPN art with N=8, H=32">
 </center>
 
-We can see that the images in some intuitive sense become less and less smooth as we increase $`H`$.
-Similar behaviour can be observed by modifying the depth of the CPPN, $`L`$.
+We can see that the images in some intuitive sense become less and less smooth as we increase $H$.
+Similar behaviour can be observed by modifying the depth of the CPPN, $L$.
 I.e., the presented experiment visually shows how the capacity of the network increases with its complexity.
 
 In the next few sections we show how to effectively incorporate audio features into the CPPN art generation.
@@ -219,7 +219,7 @@ These procedures implicitly add a temporal dimension to the CPPN and makes it a 
 
 ## Generating animations with CPPNs
 
-A temporal dimension ($`t`$, time in seconds) can be trivially added to a CPPN by augmenting its input via some temporally varying function, $`f(t)`$:
+A temporal dimension ($t$, time in seconds) can be trivially added to a CPPN by augmenting its input via some temporally varying function, $f(t)$:
 
 $$
 	\mathbf{h}_{0}=
@@ -231,7 +231,7 @@ $$
 	\end{pmatrix}
 $$
 
-For example, setting $`f(t)=\cos(\omega t)`$ gives us a nice periodic visualization, such as the one that follows ([code/periodic.py](code/periodic.py)):
+For example, setting $f(t)=\cos(\omega t)$ gives us a nice periodic visualization, such as the one that follows ([code/periodic.py](code/periodic.py)):
 
 <div style="text-align:center;">
 <video style="width: 70%; height:35%; max-width: 512px; max-height: 256px;" autoplay loop="" muted="" playsinline="">
@@ -239,7 +239,7 @@ For example, setting $`f(t)=\cos(\omega t)`$ gives us a nice periodic visualizat
 </video>
 </div>
 
-Of course, when rendering the animations such as the one above, the time axis is sampled in intervals of $`\Delta t`$ seconds: $`t_{n+1}=t_{n} + \Delta t`$.
+Of course, when rendering the animations such as the one above, the time axis is sampled in intervals of $\Delta t$ seconds: $t_{n+1}=t_{n} + \Delta t$.
 For each such time sample an image is rendered with a CPPN.
 These images are combined together into a video with [FFmpeg](https://en.wikipedia.org/wiki/FFmpeg).
 For an examples, consider the following command that will produce a 60FPS video `out.mp4` from the images in folder `frames/`:
@@ -265,8 +265,8 @@ A sound wave is represented in a computer as an array of numbers, obtained throu
 Each of these numbers represents the [sound pressure](https://en.wikipedia.org/wiki/Sound_pressure) at a particular point in time.
 Sound signals we are interested in are limited to a range of frequencies that can be heard by a human.
 This frequency range is commonly given as [20 to 20,000 Hz](https://en.wikipedia.org/wiki/Hearing_range).
-According to the [Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem), a sufficient condition for perfect reconstruction of an analog signal from its samples is to have it sampled at a rate greater than $`2\cdot B`$ in the case that $`B`$ is the maximum frequency component present in the signal.
-In practice, the sound is first passed through a low-pass filter that "kills" all the frequencies larger than 20,000 Hz and then sampled at a rate of $`f_s=`$44,100 samples per second
+According to the [Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem), a sufficient condition for perfect reconstruction of an analog signal from its samples is to have it sampled at a rate greater than $2\cdot B$ in the case that $B$ is the maximum frequency component present in the signal.
+In practice, the sound is first passed through a low-pass filter that "kills" all the frequencies larger than 20,000 Hz and then sampled at a rate of $f_s=$44,100 samples per second
 (this rate is a little bit greater than the minimum required by the Nyquist-Shannon theorem due to the imperfections of the filter, see [here](https://dsp.stackexchange.com/questions/38131/if-humans-can-only-hear-up-to-20-khz-frequency-sound-why-is-music-audio-sampled) for more details).
 Higher sampling rates than 44,100 are not that common and we resample all audio to 44,100 via FFmpeg before producing visualizations.
 This can be done at the audio decompression stage:
@@ -278,23 +278,23 @@ A small Python wrapper around this process is available [here](code/audio_loader
 We use it for our purposes.
 
 To extract the features for our sampled audio, we partition it into a bunch short, overlapping segments and extract frequency data from each of these segments.
-For the $`n`$th segment, we extract the frequency data for samples with indices from $`nS`$ to $`nS + G`$.
-The parameters $`S`$ and $`G`$ are integers that represent the stride factor and the segment size.
+For the $n$th segment, we extract the frequency data for samples with indices from $nS$ to $nS + G$.
+The parameters $S$ and $G$ are integers that represent the stride factor and the segment size.
 These should be set emprirically.
-In our case, $`S=735`$ (leads to $`60`$ segments per one second of audio --- enough for a smooth animation) and $`G=2048`$ (corresponds to approximately $`46`$ miliseconds) will work great.
+In our case, $S=735$ (leads to $60$ segments per one second of audio --- enough for a smooth animation) and $G=2048$ (corresponds to approximately $46$ miliseconds) will work great.
 
 The insight into the frequency spectrum of a signal, i.e., the elementary constituents that "vibrate" within it and our ears feel, can be obtained from its samples through the [Discrete Fourier transform (DFT)](https://en.wikipedia.org/wiki/Discrete_Fourier_transform).
 A detailed explanation of this topic is beyond the scope of this post.
 Thus, if you do not understand some of the concepts used here, have a look at the wikipedia articles on [Fourier analysis](https://en.wikipedia.org/wiki/Fourier_analysis) and the [DTFT](https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform).
 Given a `numpy` array containing sound-wave samples, its DFT can be computed with the function `numpy.fft.fft`.
 The abbreviation FFT stands for [Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform), an efficient algorithm for computing the DFT.
-In our case, we use the FFT to get the frequency data for short audio segments of length $`G=2048`$.
+In our case, we use the FFT to get the frequency data for short audio segments of length $G=2048$.
 Note that this process is known as [Short-time Fourier transform (STFT)](https://en.wikipedia.org/wiki/Short-time_Fourier_transform) in the literature.
-For each segment, we obtain $`2048`$ complex numbers that represent its frequency data.
+For each segment, we obtain $2048$ complex numbers that represent its frequency data.
 However, we keep only the first half for our purposes:
 since the input to the FFT is an array of real numbers, the computed spectrum is symmetric
 (see [here](https://en.wikipedia.org/wiki/Fast_Fourier_transform#FFT_algorithms_specialized_for_real_and/or_symmetric_data) for an explanation).
-The first component of this resulting array corresponds to the frequency $`0`$ Hz and the last components corresponds to the frequency of $`f_s/2=`$ 22,050 Hz (the so-called [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency)).
+The first component of this resulting array corresponds to the frequency $0$ Hz and the last components corresponds to the frequency of $f_s/2=$ 22,050 Hz (the so-called [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency)).
 The rest are linearly spaced in between these two values.
 The function `numpy.fft.fftfreq` can be used to inspect exact values.
 The "strength" of each vibrating frequency can be obtained by taking the absolute value of the complex number at the corresponding index of the FFT array.
@@ -320,8 +320,8 @@ To summarize, for a numpy array `segment` containing 2048 sound samples sampled 
 ampspectrum = numpy.abs(freqspectrum)</code></pre>
 
 Next, we sum together the amplitudes of frequencies according to the table above to produce our frequency features:
-$`F_1, F_2, \ldots, F_8`$.
-For example, `F4 = numpy.sum(ampspectrum[23:93])` gives us the vibration intensity in the *midrange* frequency band (0.5 to 2 kHz) since the spacing between frequency samples is `fs/len(segment)` $`\approx21.5`$ Hz.
+$F_1, F_2, \ldots, F_8$.
+For example, `F4 = numpy.sum(ampspectrum[23:93])` gives us the vibration intensity in the *midrange* frequency band (0.5 to 2 kHz) since the spacing between frequency samples is `fs/len(segment)` $\approx21.5$ Hz.
 After some preprocessing, these frequency features are passed into a CPPN when generating each frame of our animation.
 The details are explained in the next section.
 
@@ -334,8 +334,8 @@ However, we first apply the following preprocessing steps that improve the quali
 2. the features are smoothed in time to avoid excessive jitter.
 
 Let us first introduce some notation to ease the exposition:
-$`F_{n, b}`$ denotes the feature for the $`n`$th segment and frequency band with index $`b`$
-(in our earlier example, $`b=1, 2, \ldots, 8`$).
+$F_{n, b}$ denotes the feature for the $n$th segment and frequency band with index $b$
+(in our earlier example, $b=1, 2, \ldots, 8$).
 The preprocessing of these raw frequency features is described in the text that follows.
 
 The first problem with raw frequency features is their scale:
@@ -345,7 +345,7 @@ Another problem is that some frequency bands potentially contain much more energ
 To avoid these issues and introduce more control to the whole process,
 we adopt the normalization scheme that consists of dividing each feature with the [median value](https://en.wikipedia.org/wiki/Median) of the corresponding frequency band.
 This is achieved in two simple steps.
-First, the median is computed for each band $`b`$:
+First, the median is computed for each band $b$:
 
 $$
 	M_b=
@@ -359,24 +359,24 @@ $$
 	g_b\cdot \frac{F_{n, b}}{M_b + \epsilon}
 $$
 
-where $`\epsilon`$ is a small number that prevents the possibility of division by zero and $`g_b`$ is the gain parameter assigned to the band $`b`$.
-The gain $`g_b`$ has to be set empirically.
+where $\epsilon$ is a small number that prevents the possibility of division by zero and $g_b$ is the gain parameter assigned to the band $b$.
+The gain $g_b$ has to be set empirically.
 
 Another problem with raw frequency features is that they change quite rapidly through time.
 Thus, it is often beneficial to smooth them out with the goal of minimizing unwanted jitter in the animation.
 This can be achieved by [exponential smoothing](https://en.wikipedia.org/wiki/Exponential_smoothing).
-The basic idea is to apply the following operation for some real number $`\alpha\in (0, 1)`$:
+The basic idea is to apply the following operation for some real number $\alpha\in (0, 1)$:
 
 $$
 	\hat{F}_{n+1, b}=
 	\alpha\hat{F}_{n, b} + (1-\alpha)\bar{F}_{n+1, b}
 $$
 
-where $`\hat{F}_{0, b}`$ is set to $`\bar{F}_{0, b}`$.
-The smoothing factor $`\alpha`$ should be tuned by the user until a satisfactory result is produced.
+where $\hat{F}_{0, b}$ is set to $\bar{F}_{0, b}$.
+The smoothing factor $\alpha$ should be tuned by the user until a satisfactory result is produced.
 
 Now we can feed the normalized and smoothed features into the first layer of a CPPN
-(note that we drop the segment index $`n`$ for simplicity of exposition):
+(note that we drop the segment index $n$ for simplicity of exposition):
 
 $$
 	\mathbf{h}_{0}=
@@ -434,7 +434,7 @@ There are two relatively obvious improvements that could alleviate this issue.
 Notice that a CPPN consists of a sequence of pointwise nonlinearities and matrix-matrix products.
 All of these operations could be parallelized on a GPU
 (through the use of [Nvidia CUDA](https://en.wikipedia.org/wiki/CUDA), [OpenCL](https://en.wikipedia.org/wiki/OpenCL) or the use of [shaders](https://en.wikipedia.org/wiki/Shader)).
-Another possibility is to reduce the amount of computation by making the matrices $`\mathbf{W}_l`$ [sparse](https://en.wikipedia.org/wiki/Sparse_matrix), i.e., make them have very many of their elements set to $`0`$.
+Another possibility is to reduce the amount of computation by making the matrices $\mathbf{W}_l$ [sparse](https://en.wikipedia.org/wiki/Sparse_matrix), i.e., make them have very many of their elements set to $0$.
 These improvements are left for future work on this topic.
 
 An iteresting question is whether a sufficient number of people find the described application of CPPNs useful for their work

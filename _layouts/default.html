@@ -39,12 +39,6 @@
 		<script>
 			document.addEventListener("DOMContentLoaded", function() {
 				const div = document.getElementById("content")
-
-				// the horrific two lines below are needed because github emits such code for "$`" and "`$",
-				// which are sequences that enable proper rendering of math expressions in github repositories
-				div.innerHTML = div.innerHTML.replaceAll('$<code class="language-plaintext highlighter-rouge">', "$")
-				div.innerHTML = div.innerHTML.replaceAll('</code>$', "$")
-
 				renderMathInElement(div, {
 					delimiters: [
 						{left: "$", right: "$", display: false},

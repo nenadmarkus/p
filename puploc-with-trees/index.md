@@ -62,15 +62,15 @@ $$
 \end{cases}
 $$
 
-where $`R`$ is an image region and $`(x_i, y_i)`$ are the locations within this region at which to compare the pixel values.
-The values $`(x_i, y_i)`$ are stored in normalized coordinates to enable resolution independence
+where $R$ is an image region and $(x_i, y_i)$ are the locations within this region at which to compare the pixel values.
+The values $(x_i, y_i)$ are stored in normalized coordinates to enable resolution independence
 (absolute coordinates are obtained by multiplying normalized values with the size of the region).
 Note that such configuration of decision trees is relatively common in computer vision
 (e.g., it is used in the [Microsoft Kinect device](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/BodyPartRecognition.pdf) and [pico.js](../picojs-intro)).
 However, in our case, we use regression trees (and their ensembles):
 instead of a class label, leaf nodes of our trees contain 2D vectors that are interpreted as offsets to the eye-pupil location.
 
-The values $`x_1, y_1, x_2, y_2`$ in internal nodes and 2D offsets in leaf nodes are determined during the training process.
+The values $x_1, y_1, x_2, y_2$ in internal nodes and 2D offsets in leaf nodes are determined during the training process.
 The training data for each tree is a large set of input-output pairs of the following form:
 
 $$
@@ -82,9 +82,9 @@ $$
 \},
 $$
 
-where $`R_n`$ and $`\mathbf{o}_n`$ represent the $`n`$th eye region with its associated eye-pupil location offsets in normalized coordinates.
+where $R_n$ and $\mathbf{o}_n$ represent the $n$th eye region with its associated eye-pupil location offsets in normalized coordinates.
 As is usually the case, each tree is learned top-down in a greedy manner through a process called [variance reduction](https://en.wikipedia.org/wiki/Decision_tree_learning#Variance_reduction).
-The parameters $`x_1, y_1, x_2, y_2`$ of each binary test in internal nodes of the tree are selected in a way to maximize clustering quality obtained when the incoming training data is split by the test.
+The parameters $x_1, y_1, x_2, y_2$ of each binary test in internal nodes of the tree are selected in a way to maximize clustering quality obtained when the incoming training data is split by the test.
 Since the number of possible tests is prohibitively large and the optimization criterion cannot be solved using gradient-based methods, randomized sampling is used:
 several eligible tests are generated at random and the one is selected that leads to the best split of the training data.
 The training data is recursively clustered in this fashion until a predefined depth of the tree is reached.
@@ -136,7 +136,7 @@ We describe our JavaScript implementation of the method in the next section.
 The code that enables learning of regression trees is implemented in C due to efficiency and portability.
 We closely follow the recommendations from the original paper.
 Thus, our pupil-localizer contains 5 stages, each with 20 trees of depth set to 10.
-The shrinkage parameter was set to $`0.5`$.
+The shrinkage parameter was set to $0.5$.
 The training set consists a couple of thousand face images with manually labeled pupil locations.
 The regions around eyes are cropped in such a manner to enable us to use [pico.js](https://github.com/nenadmarkus/picojs) in runtime for the face-localization task.
 
@@ -166,7 +166,7 @@ function do_puploc(r, c, s, nperturbs, image) {
 
 The `r`, `c` and `s` parameters represent the coordinated (row, column, scale/size) of the region within which we would like the localization to be prformed.
 The parameter `nperturbs` sets the number of random perturbations to perform on the specified image region.
-We recommend to set this number to $`15`$ or $`31`$.
+We recommend to set this number to $15$ or $31$.
 The final parameter, `image`, contains the raw image pixels.
 See the article on <a href="../picojs-intro/">pico.js</a> for details.
 
