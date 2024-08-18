@@ -1,9 +1,12 @@
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  math_engine: none
+  parse_block_html: true
+
 plugins:
   - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
-
-kramdown:
-  input: GFM
-  parse_block_html: true
