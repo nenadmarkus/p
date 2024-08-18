@@ -44,8 +44,8 @@ $$
 	\mathbf{D} = \sqrt{\mathbf{S}_A - 2\cdot\mathbf{A}\cdot\mathbf{B}^T + \mathbf{S}_B}
 $$
 
-where $$\mathbf{S}_A\in\mathbb{R}^{M\times N}$$ is such that $$(\mathbf{S}_A)_{ij}=\mathbf{a}_i^T\mathbf{a}_i$$ and
-$$\mathbf{S}_B\in\mathbb{R}^{M\times N}$$ is such that $$(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j$$.
+where $`\mathbf{S}_A\in\mathbb{R}^{M\times N}`$ is such that $`(\mathbf{S}_A)_{ij}=\mathbf{a}_i^T\mathbf{a}_i`$ and
+$`\mathbf{S}_B\in\mathbb{R}^{M\times N}`$ is such that $`(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j`$.
 The square root is taken elementwise.
 
 Each of the three above terms can be obtain with vectorized code.
