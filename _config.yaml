@@ -3,3 +3,7 @@ plugins:
 relative_links:
   enabled: true
   collections: true
+
+kramdown:
+  input: GFM
+  parse_block_html: true
