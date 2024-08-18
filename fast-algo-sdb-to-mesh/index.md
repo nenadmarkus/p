@@ -274,7 +274,7 @@ $$
 	z_n - z^* =
 	(1 - n_z)\cdot (z_{n-1} - z^*)=
 	\cdots=
-	(1 - n_z)^n (z_0 - z^*)
+	(1 - n_z)^n (z_0 - z^* )
 $$
 
 Since $`1 - n_z`$ is greater than $`1`$, at most $`O(\log N)`$ iterations along the ray are needed to exit the polygonization volume.
