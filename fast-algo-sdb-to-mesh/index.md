@@ -271,8 +271,8 @@ In the second subcase, we have $`n_x x_0 + n_y y_0 + n_z z_n < 0`$.
 Now the following holds:
 
 $$
-	z_n - z^* =
-	(1 - n_z)\cdot (z_{n-1} - z^*)=
+	z_n - z^{*} =
+	(1 - n_z)\cdot (z_{n-1} - z^{*})=
 	\cdots=
 	(1 - n_z)^n (z_0 - z^{*})
 $$
