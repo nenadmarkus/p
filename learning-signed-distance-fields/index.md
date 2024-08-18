@@ -19,10 +19,10 @@ These papers illustrate some core ideas and applications within the area.
 The first two study the learning of **generative** models for 3D shapes.
 I.e., for applications that need to generate novel 3D shapes belonging to a certain class, such as aeroplanes of cars.
 This could be useful in computer games and some types of viritual reality software, for example.
-In [1], the authors propose to model a shape as an occupancy map ($$+1$$ outside shape, $$-1$$ inside) with a neural network classifier.
+In [1], the authors propose to model a shape as an occupancy map ($`+1`$ outside shape, $`-1`$ inside) with a neural network classifier.
 Since this representaion is smooth, it is capable of defining shapes as implicit sufraces.
 However, the approach would probably not work well with sphere tracing because of issues ontlined in a [previous post](../lipschitz-continuity-and-sphere-tracing) about [Lipschitz continuity](https://en.wikipedia.org/wiki/Lipschitz_continuity).
-On the other hand, the authors of [2] propose to model a 3D shape $$S$$ with a neural network that is learned to estimate the signed distance field:
+On the other hand, the authors of [2] propose to model a 3D shape $`S`$ with a neural network that is learned to estimate the signed distance field:
 
 $$
 	\text{NN}(x, y, z)\approx
@@ -58,16 +58,16 @@ See reference [5] for more details.
 
 Our goal is to transform these shapes into signed distance fields.
 
-Given such a shape $$S$$, we generate a trainig set of the form
+Given such a shape $`S`$, we generate a trainig set of the form
 
 $$
 	\left\{(\mathbf{x}_i, d_i)\right\}_{i=1}^N
 $$
 
-where $$\mathbf{x}\in\mathbb{R}^3$$ is a point in 3D space and $$d_i$$ is the Euclidean distance from $$\mathbf{x}$$ to the surface of $$S$$.
+where $`\mathbf{x}\in\mathbb{R}^3`$ is a point in 3D space and $`d_i`$ is the Euclidean distance from $`\mathbf{x}`$ to the surface of $`S`$.
 This is conceptually very simple, but there are some subtleties.
 
-In our experiments, $$S$$ is represented as a triangle mesh.
+In our experiments, $`S`$ is represented as a triangle mesh.
 We generate the trainig data with the help of the excellent [mesh-to-sdf library](https://github.com/marian42/mesh_to_sdf):
 
 	import mesh_to_sdf
@@ -76,7 +76,7 @@ We generate the trainig data with the help of the excellent [mesh-to-sdf library
 	xyz, dists = mesh_to_sdf.sample_sdf_near_surface(mesh, number_of_points=250000)
 	xyz, dists = xyz/2.0, dists/2.0 # normalize to unit cube
 
-After the above code is executed, the `xyz` variable is a 2D `numpy` array containing $$250\;000$$ $$(x, y, z)$$ points sampled inside a unit cube centered at the origin and `dists` contains the distances of these points to the shape.
+After the above code is executed, the `xyz` variable is a 2D `numpy` array containing $`250\;000`$ $`(x, y, z)`$ points sampled inside a unit cube centered at the origin and `dists` contains the distances of these points to the shape.
 Some of the points are sampled uniformly inside the unit cube, but the majority come from the surface of the mesh.
 Of course, prior to sampling, the mesh is re-scaled to fit the unit cube.
 An example point cloud obtained in this way is illustrated in the following image:
@@ -95,8 +95,8 @@ Given such a training set, we can now describe two basic learning approaches tha
 
 We have used Fourier features in a [previous post](../fourier-features-graphics), but we go over the basics here once again for completeness.
 
-Let $$\mathbf{v}=(x, y, z)^T$$ be a vector representing a point location in 3D space.
-Fourier features computed from $$\mathbf{v}$$ are defined as
+Let $`\mathbf{v}=(x, y, z)^T`$ be a vector representing a point location in 3D space.
+Fourier features computed from $`\mathbf{v}`$ are defined as
 
 $$
 	\text{FF}(\mathbf{v})=
@@ -108,34 +108,34 @@ $$
 	\right)^T
 $$
 
-where $$\mathbf{f}_i$$ are the frequency vectors.
-In our experiments, we sample these from a standard normal distribusion with zero mean and a standard deviation $$\sigma$$.
-Of course, $$\mathbf{f}_i$$s are generated at the beginning and stay fixed during the whole experiment.
-Setting $$\sigma=3$$, $$N=1024$$ worked well for in our experiments and thus we keep these values.
+where $`\mathbf{f}_i`$ are the frequency vectors.
+In our experiments, we sample these from a standard normal distribusion with zero mean and a standard deviation $`\sigma`$.
+Of course, $`\mathbf{f}_i`$s are generated at the beginning and stay fixed during the whole experiment.
+Setting $`\sigma=3`$, $`N=1024`$ worked well for in our experiments and thus we keep these values.
 
-The idea is to approximate the signed distance $$d_S$$ to shape $$S$$ as a weighted average of Fourier features:
+The idea is to approximate the signed distance $`d_S`$ to shape $`S`$ as a weighted average of Fourier features:
 
 $$
 	d_S(\mathbf{v})\approx
 	\mathbf{w}^T\cdot \text{FF}(\mathbf{v})
 $$
 
-The weights $$\mathbf{w}\in\mathbb{R}^{2N}$$ have to be computed (learned) with some kind of an optimization procedure.
-A simple and effective procedure is to first compute Fourier features for all poitns $$\mathbf{v}_j$$ in the dataset:
+The weights $`\mathbf{w}\in\mathbb{R}^{2N}`$ have to be computed (learned) with some kind of an optimization procedure.
+A simple and effective procedure is to first compute Fourier features for all poitns $`\mathbf{v}_j`$ in the dataset:
 
 $$
 	\mathbf{V}_j=
 	\text{FF}(\mathbf{v}_j)
 $$
 
-and then find $$\mathbf{w}$$ that minimizes
+and then find $`\mathbf{w}`$ that minimizes
 
 $$
 	J(\mathbf{w})=
 	\sum_{j}\left( \mathbf{w}^T\mathbf{V}_j - d_j \right)^2
 $$
 
-where $$d_j=d_S(\mathbf{v}_j)$$ is the distance from the $$j$$th point to the shape $$S$$.
+where $`d_j=d_S(\mathbf{v}_j)`$ is the distance from the $`j`$th point to the shape $`S`$.
 
 This is an ordinary least squares problem and it has an efficient closed-form solution: [https://en.wikipedia.org/wiki/Ordinary_least_squares](https://en.wikipedia.org/wiki/Ordinary_least_squares).
 These properties make the proposed method quite elegant.
@@ -144,26 +144,26 @@ Detailed analysis of these issues is out of scope for this post and we now focus
 
 You may recall that if [certain criteria](../lipschitz-continuity-and-sphere-tracing) are not met,
 `gridhopping` might "miss" parts of the surface of the shape and render an incomplete mesh.
-To circumvent these problems, we shrink the signed distance approximation by factor $$\lambda$$:
+To circumvent these problems, we shrink the signed distance approximation by factor $`\lambda`$:
 
 $$
 	\text{SDF}(x, y, z)=
 	\frac{\mathbf{w}^T\cdot \text{FF}(x, y, z)}{\lambda}
 $$
 
-Note that using a too large $$\lambda$$ reduces the efficiency of `gridhopping`, i.e., more SDF evaluations are needed to localize the grid cells containing the shape surface.
+Note that using a too large $`\lambda`$ reduces the efficiency of `gridhopping`, i.e., more SDF evaluations are needed to localize the grid cells containing the shape surface.
 Thus, we want the smallest possible value that results in correct polygonization.
-We empirically found that setting $$\lambda=1.5$$ works well.
+We empirically found that setting $`\lambda=1.5`$ works well.
 It is important to say that this does not affect the final mesh.
 I.e., the meshes computed by `gridhopping` and the basic algorithm of cubic complexity are the same.
 The only difference should be in speed.
 We check this hypothesis next.
 
-We compare times needed to polygonize SDFs of our 6 learned models for the basic $$O(N^3)$$ algorithm and `gridhopping`.
-The grid resolution $$N$$ varies from $$64$$ to $$512$$.
-The basic method should scale as $$O(N^3)$$ and `gridhopping` as $$O(N^2\log N)$$
+We compare times needed to polygonize SDFs of our 6 learned models for the basic $`O(N^3)`$ algorithm and `gridhopping`.
+The grid resolution $`N`$ varies from $`64`$ to $`512`$.
+The basic method should scale as $`O(N^3)`$ and `gridhopping` as $`O(N^2\log N)`$
 (see [here](../fast-algo-sdb-to-mesh) for a theoretical analysis that produces this).
-Batching the SDF evaluations in chunks of size $$\approx 10\;000$$ leads to speed improvements.
+Batching the SDF evaluations in chunks of size $`\approx 10\;000`$ leads to speed improvements.
 All computations are performed on a relatively high-end laptop CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz.
 The results can be seen in the figures below
 (the legend for all is in the top left one):
@@ -181,7 +181,7 @@ Let us check next how all this works when we represent the SDF with a neural net
 
 ## Approximating a signed distance field with neural networks
 
-The basic idea is to train a neural network NN with paramters $$\theta$$ that transforms the input $$\mathbf{v}=(x, y, z)^T$$ coordinates into a distance to the shape $$S$$:
+The basic idea is to train a neural network NN with paramters $`\theta`$ that transforms the input $`\mathbf{v}=(x, y, z)^T`$ coordinates into a distance to the shape $`S`$:
 
 $$
 	d_S(\mathbf{v})\approx
@@ -193,18 +193,18 @@ It is not excluded that better results (more accuracy, speed improvement, etc.) 
 Following Davies et al. [4], our networks have a feedforward fully-connected architecture with 8 layers.
 Each layer has a hidden size of 64 and the activation function is set to be a [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 To speed up training, we also use [batch normalization](https://en.wikipedia.org/wiki/Batch_normalization) in all layers except the last one.
-This results in about $$30000$$ network parameters (120kB of memory).
+This results in about $`30000`$ network parameters (120kB of memory).
 By modern standards, this is a tiny network, but it is capable of accurately representing the shapes used in our experiments.
 
 The networks are learned with the standard stochastic gradient descent approach.
-We use the Adam optimizer [6] with the learning rate set to $$0.0001$$.
-The gradient-related updates are computed on minibatches containing $$512$$ point-distance pairs.
-The total number of updates is limited to $$200\;000$$ and thus the GPU-accelerated training finishes in less than one hour for each network.
+We use the Adam optimizer [6] with the learning rate set to $`0.0001`$.
+The gradient-related updates are computed on minibatches containing $`512`$ point-distance pairs.
+The total number of updates is limited to $`200\;000`$ and thus the GPU-accelerated training finishes in less than one hour for each network.
 These settings seem to generalize well across a wide range of geometries.
 
 The following NN evaluations are performed on an Nvidia GeForce RTX 2060 Mobile GPU.
 It is important to note that we noticed a significant relation between processing speed and batching size, i.e., how much points/rays we process in parallel.
-It seems that the optimal value is around $$100\;000$$ for the mentioned hardware setup.
+It seems that the optimal value is around $`100\;000`$ for the mentioned hardware setup.
 The results can be seen in the figures below
 (the legend for all is in the top left one):
 
@@ -212,8 +212,8 @@ The results can be seen in the figures below
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/nn-times-gpu.png" style="width: 96%; max-width: 1024px;" alt="Point cloud">
 </center>
 
-Since the axes are logarithmic again, we can observe that `gridhopping` is asymptotically better (something like $$O(N^2)$$) than the basic $$O(N^3)$$ method.
-However, for values of grid resolution $$N$$ smaller than about $$2^7=128$$, the basic method is faster.
+Since the axes are logarithmic again, we can observe that `gridhopping` is asymptotically better (something like $`O(N^2)`$) than the basic $`O(N^3)`$ method.
+However, for values of grid resolution $`N`$ smaller than about $`2^7=128`$, the basic method is faster.
 We attribute this fact to constant overhead needed to prepare the `gridhopping` run.
 
 For completeness of our exposition, we also repeat all computations on a laptop CPU (same setup as in FF experiments).
@@ -223,7 +223,7 @@ The results can be seen in figures below:
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/nn-times-cpu.png" style="width: 96%; max-width: 1024px;" alt="Point cloud">
 </center>
 
-We observe a similar asymptotical trend (for large values of $$N$$): `gridhopping` has a computational complexity advantage over the basic method.
+We observe a similar asymptotical trend (for large values of $`N`$): `gridhopping` has a computational complexity advantage over the basic method.
 It can even be seen that for some models the advantage holds even for smaller grid resolutions.
 
 ## Conclusion
