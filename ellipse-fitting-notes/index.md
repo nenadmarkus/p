@@ -15,7 +15,7 @@ To be more specific, given an image such as the one below, our goal is to devise
 </center>
 
 This problem  can be formulated as fitting a parametric equation to a set of points.
-There are two useful ways to parameterize an ellipse in the $xy$ plane.
+There are two useful ways to parameterize an ellipse in the $`xy`$ plane.
 We use both in this post.
 
 In [analytic geometry](https://en.wikipedia.org/wiki/Analytic_geometry), a general implicit equation of a [conic section](https://en.wikipedia.org/wiki/Conic_section), of which an ellipse is a special calse, can be written down as the following quadratic form:
@@ -24,14 +24,14 @@ $$
 	Ax^2 + 2Bxy + Cy^2 + 2Dx + 2Ey + F = 0
 $$
 
-Of course, not all possible values of $A$, $B$, $C$, $D$, $E$ and $F$ give an ellipse.
+Of course, not all possible values of $`A`$, $`B`$, $`C`$, $`D`$, $`E`$ and $`F`$ give an ellipse.
 You can read about the specific constraints [here](http://mathworld.wolfram.com/Ellipse.html).
 We will not explicitly enforce these constraints in our ellipse-fitting algorithms because they will be based on [RANSAC](https://en.wikipedia.org/wiki/Random_sample_consensus).
 
-In our case, $B=0$ since we are interested in axis-aligned ellipses.
-Also, we can set $F=1$ to simplify the computation and handle the case $F=0$ separately.
+In our case, $`B=0`$ since we are interested in axis-aligned ellipses.
+Also, we can set $`F=1`$ to simplify the computation and handle the case $`F=0`$ separately.
 
-An equivalent form, parameterized by the ellipse center, $(\bar{x}, \bar{y})$, and the two axes, $a$ and $b$, is given by the following equation:
+An equivalent form, parameterized by the ellipse center, $`(\bar{x}, \bar{y})`$, and the two axes, $`a`$ and $`b`$, is given by the following equation:
 
 $$
 	\frac{(x - \bar{x})^2}{a^2} + \frac{(y - \bar{y})^2}{b^2} = 1
@@ -59,11 +59,11 @@ $$
 
 ## A 4-point algorithm
 
-We assume that we have four points lying on the ellipse: $(x_1, y_1), (x_2, y_2), (x_3, y_3), (x_4, y_4)$.
+We assume that we have four points lying on the ellipse: $`(x_1, y_1), (x_2, y_2), (x_3, y_3), (x_4, y_4)`$.
 Our task is to find the parameters of the ellipse based on these four points.
 
-First, we handle the case $F\neq 0$.
-We assume that $B=0$ (i.e., that the ellipse is axis-aligned), fix $F$ to $1$ and insert the above four points into the ellipse equation to get the following system:
+First, we handle the case $`F\neq 0`$.
+We assume that $`B=0`$ (i.e., that the ellipse is axis-aligned), fix $`F`$ to $`1`$ and insert the above four points into the ellipse equation to get the following system:
 
 $$
 	Ax_1^2 + Cy_1^2 + 2Dx_1 + 2Ey_1 = -1
@@ -82,7 +82,7 @@ $$
 $$
 
 The above smalle linear system can be solved by applying [Cramer's rule](https://en.wikipedia.org/wiki/Cramer%27s_rule).
-If the solution does not exist (the determinant of the system's matrix is $0$), we handle the case $F=0$.
+If the solution does not exist (the determinant of the system's matrix is $`0`$), we handle the case $`F=0`$.
 
 To handle multiple ellipses, we can use sequential RANSAC.
 The idea is to iterate the following two steps until no new solutions can be obtained:
@@ -103,8 +103,8 @@ The probability of selecting two points from the same ellipse is much higher, bu
 The gradient information can be obtained by using surrounding points within some predefined distance to fit a tangent to the ellipse.
 The fitting process boils down to finding the parameters of a line in [Hesse normal form](https://en.wikipedia.org/wiki/Hesse_normal_form) with the [least squares method](https://en.wikipedia.org/wiki/Least_squares).
 
-Each ellipse can be seen as an implicit funciton of the form $f(x, y)=0$.
-The derivative $\frac{\mathrm{d}y}{\mathrm{d}x}$ can be computed analytically as (see [here](https://en.wikipedia.org/wiki/Implicit_function#Implicit_differentiation)):
+Each ellipse can be seen as an implicit funciton of the form $`f(x, y)=0`$.
+The derivative $`\frac{\mathrm{d}y}{\mathrm{d}x}`$ can be computed analytically as (see [here](https://en.wikipedia.org/wiki/Implicit_function#Implicit_differentiation)):
 
 $$
 	\frac{\mathrm{d}y}{\mathrm{d}x}=
@@ -112,9 +112,9 @@ $$
 	-\frac{Ax + D}{Cy + E}
 $$
 
-Note that the above equation is a linear one when $\frac{\mathrm{d}y}{\mathrm{d}x}$ is known.
+Note that the above equation is a linear one when $`\frac{\mathrm{d}y}{\mathrm{d}x}`$ is known.
 
-If we fix $F=1$, this leads us to the following four equations derived from two points and their gradients:
+If we fix $`F=1`$, this leads us to the following four equations derived from two points and their gradients:
 
 $$
 	Ax_1^2 + Cy_1^2 + 2Dx_1 + 2Ey_1 = -1
@@ -132,7 +132,7 @@ $$
 	Ax_2 + D + \rho_2(Cy_2 + D) = 0
 $$
 
-where $\rho_1$ and $\rho_2$ are the derivatives $\frac{\mathrm{d}y}{\mathrm{d}x}$ obtained from the tangent lines in the first and second points, respectively.
+where $`\rho_1`$ and $`\rho_2`$ are the derivatives $`\frac{\mathrm{d}y}{\mathrm{d}x}`$ obtained from the tangent lines in the first and second points, respectively.
 
 The above linear system can also be solved by applying Cramer's rule.
 Also, as explained in the previous section, we can use sequential RANSAC to extract multiple ellipses if present.

@@ -29,19 +29,19 @@ $$
 	\right)^T
 $$
 
-where $\mathbf{v}$ is the input vector to be transformed and there are $N$ frequency vectors $\mathbf{f}_1, \mathbf{f}_2, \ldots, \mathbf{f}_N$.
-Each of these frequency vectors is sampled from a normal distribution with a zero mean and a diagonal covariance matrix of the form $\sigma^2\mathbf{I}$.
-The standard deviation $\sigma$ is the most interesting property of the encoding as it sets the level of detail that can be represented.
+where $`\mathbf{v}`$ is the input vector to be transformed and there are $`N`$ frequency vectors $`\mathbf{f}_1, \mathbf{f}_2, \ldots, \mathbf{f}_N`$.
+Each of these frequency vectors is sampled from a normal distribution with a zero mean and a diagonal covariance matrix of the form $`\sigma^2\mathbf{I}`$.
+The standard deviation $`\sigma`$ is the most interesting property of the encoding as it sets the level of detail that can be represented.
 
 ## Positional encoding and generative graphics
 
-Recall that [CPPNs](../visualizing-audio-with-cppns) are nothing else than [multilayer perceptrons (MLPs)](https://en.wikipedia.org/wiki/Multilayer_perceptron) with random weights that map an $(x, y)$ position into an RGB color value for that position:
+Recall that [CPPNs](../visualizing-audio-with-cppns) are nothing else than [multilayer perceptrons (MLPs)](https://en.wikipedia.org/wiki/Multilayer_perceptron) with random weights that map an $`(x, y)`$ position into an RGB color value for that position:
 
 $$
 	(R, G, B) = \text{MLP}(x, y)
 $$
 
-However, let us transform $\mathbf{v}=(x, y)^T$ before it goes into the MLP:
+However, let us transform $`\mathbf{v}=(x, y)^T`$ before it goes into the MLP:
 
 $$
 	(R, G, B) = \text{MLP}( RFF(x, y) )
@@ -58,11 +58,11 @@ The produced visual patterns are interesting and qualitatively different than th
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/e2.jpg" style="width: 48%; max-width: 384px;" alt="CPPN+RFF graphics">
 </center>
 
-The script [imggen-cppn.py](imggen-cppn.py) enables you to produce similar patterns for varying standard deviation $\sigma$.
+The script [imggen-cppn.py](imggen-cppn.py) enables you to produce similar patterns for varying standard deviation $`\sigma`$.
 
 	python3 imggen-cppn.py 2.0 out.jpg
 
-Here are four examples for $\sigma=1, 2, 3, 4$:
+Here are four examples for $`\sigma=1, 2, 3, 4`$:
 
 <center>
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/1.jpg" style="width: 24%;" alt="CPPN+RFF graphics">
@@ -71,7 +71,7 @@ Here are four examples for $\sigma=1, 2, 3, 4$:
 <img src="https://drone.nenadmarkus.com/data/blog-stuff/rffs/4.jpg" style="width: 24%;" alt="CPPN+RFF graphics">
 </center>
 
-We can observe that the amount of color mixing and spatial details steadily increases with $\sigma$.
+We can observe that the amount of color mixing and spatial details steadily increases with $`\sigma`$.
 
 We can also add a temporal dimension to produce videos such as the following one ([code](periodic.py)):
 

@@ -31,9 +31,9 @@ Thus, it makes sense to concentrate on this representation.
 
 A point cloud can be obtained from a triangle mesh by iterating the following three steps:
 
-1. choose a triangle with probability proportional to its area (the triangle is defined by vertices $\mathbf{v}_1$, $\mathbf{v}_2$ and $\mathbf{v}_3$);
-2. generate two random numbers, $r_1$ and $r_2$, between $0$ and $1$;
-3. return a point $\mathbf{p}$: $\mathbf{p}=(1 - \sqrt{r_1})\mathbf{v}_1 + \sqrt{r_1}(1 - r_2)\mathbf{v}_2 + \sqrt{r_1}r_2\mathbf{v}_3$.
+1. choose a triangle with probability proportional to its area (the triangle is defined by vertices $`\mathbf{v}_1`$, $`\mathbf{v}_2`$ and $`\mathbf{v}_3`$);
+2. generate two random numbers, $`r_1`$ and $`r_2`$, between $`0`$ and $`1`$;
+3. return a point $`\mathbf{p}`$: $`\mathbf{p}=(1 - \sqrt{r_1})\mathbf{v}_1 + \sqrt{r_1}(1 - r_2)\mathbf{v}_2 + \sqrt{r_1}r_2\mathbf{v}_3`$.
 
 The above procedure produces a uniform point cloud on the surface of the mesh.
 The distribution of points is not sensitive to the changes in tessellation,
@@ -43,13 +43,13 @@ The first step is self-explanatory:
 triangles with greater area should have more points on them.
 We prepare a data structure that makes this sampling process efficient.
 This data structure is an array in which each entry is associated with a triangle and contains, among other necessary data, the triangle area (computed using [Heron's formula](https://en.wikipedia.org/wiki/Heron%27s_formula)) along with the cumulative area of triangles visited before.
-A random triangle is now selected with probability proportional to its area by generating a random number between $0$ and the total cumulative area and performing a binary search on the array of cumulative areas.
+A random triangle is now selected with probability proportional to its area by generating a random number between $`0`$ and the total cumulative area and performing a binary search on the array of cumulative areas.
 
 The second and third step describe how to uniformly sample a point within a given triangle.
 The intuition is as follows.
-The value $\sqrt{r_1}$ sets the distance from the vertex $\mathbf{v}_1$ to the opposing edge of the triangle.
-The value $r_2$ interpolates along that edge between $\mathbf{v}_2$ and $\mathbf{v}_3$.
-The square root of $r_1$ is needed to correctly take into consideration the surface area.
+The value $`\sqrt{r_1}`$ sets the distance from the vertex $`\mathbf{v}_1`$ to the opposing edge of the triangle.
+The value $`r_2`$ interpolates along that edge between $`\mathbf{v}_2`$ and $`\mathbf{v}_3`$.
+The square root of $`r_1`$ is needed to correctly take into consideration the surface area.
 The whole process is illustrated in the following image.
 
 <center>
@@ -115,7 +115,7 @@ H = numpy.histogram(vals, bins=64, range=(0.0, 3.0), density=True)
 ```
 
 Two histograms can be compared, for example, using the [Bhattacharyya distance](https://en.wikipedia.org/wiki/Bhattacharyya_distance).
-A simpler solution is to simply use the $\ell_1$ norm:
+A simpler solution is to simply use the $`\ell_1`$ norm:
 
 ```
 numpy.sum(numpy.abs(H1 - H2))

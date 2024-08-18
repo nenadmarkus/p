@@ -55,7 +55,7 @@ At the end of this process, the obtained face regions are grouped into clusters 
 Due to *many* regions present in each image, real-time processing is achieved with two clever tricks:
 
 1. the classifier is organized as a [classification cascade](https://en.wikipedia.org/wiki/Cascading_classifiers);
-2. each member of the cascade can be evaluated in $O(1)$ time with respect to the size of the region.
+2. each member of the cascade can be evaluated in $`O(1)`$ time with respect to the size of the region.
 
 The classification cascade consists of a sequence of classifiers.
 Each of these classifiers correctly identifies almost all faces and discards a fraction of non-face regions.
@@ -67,15 +67,15 @@ The cascaded-classification algorithm is illustrated in the following image:
 <figure>
 <img style="width: 100%; max-width: 512px;" src="cascade.png" alt="A classification cascade">
 <figcaption>
-	Each stage contains a classifier $C_n$ that can either reject an image region (R) or accept it (A).
+	Each stage contains a classifier $`C_n`$ that can either reject an image region (R) or accept it (A).
 	When rejected, the region is not processed by further members of the cascade.
 	If none of the classifiers reject the region, we consider it to be a face.
 </figcaption>
 </figure>
 </center>
 
-In the Viola-Jones framework, each classifier $C_n$ is based on [Haar-like features](https://en.wikipedia.org/wiki/Haar-like_feature).
-This enables $O(1)$ evaluation time per region using a precomputed structure known as an [integral image](https://en.wikipedia.org/wiki/Summed-area_table).
+In the Viola-Jones framework, each classifier $`C_n`$ is based on [Haar-like features](https://en.wikipedia.org/wiki/Haar-like_feature).
+This enables $`O(1)`$ evaluation time per region using a precomputed structure known as an [integral image](https://en.wikipedia.org/wiki/Summed-area_table).
 
 However, integral images have some downsides.
 The most obvious one is that this data structure requires additional memory to store:
@@ -86,7 +86,7 @@ This may be problematic for large images that require processing on small hardwa
 A more nuanced issue with the approach is its elegance:
 a natural question is if we can make a framework that does not require such a structure and has all the important properties.
 
-The `pico` framework replaces Haar-like features in each classfier $C_n$ with pixel-comparison tests of the following form:
+The `pico` framework replaces Haar-like features in each classfier $`C_n`$ with pixel-comparison tests of the following form:
 
 $$
 \text{bintest}(R, x_1, y_1, x_2, y_2)=
@@ -96,10 +96,10 @@ $$
 \end{cases}
 $$
 
-where $R$ is an image region and $(x_i, y_i)$ represent the locations at which to compare the pixel values.
+where $`R`$ is an image region and $`(x_i, y_i)`$ represent the locations at which to compare the pixel values.
 Notice that such a test can be applied to regions of various sizes without any specialized data structure, unlike Haar-like features.
-This is achieved by storing the locations $(x_i, y_i)$ in normalized coordinates
-(i.e., $(x_i, y_i)$ is in $[-1, 1]\times[-1, 1]$) and multiplying them by the scale of the current region.
+This is achieved by storing the locations $`(x_i, y_i)`$ in normalized coordinates
+(i.e., $`(x_i, y_i)`$ is in $`[-1, 1]\times[-1, 1]`$) and multiplying them by the scale of the current region.
 This is the idea that enables the multiscale detection capabilities of `pico`.
 
 Because of the simplicity of such tests and potential problems with aliasing and noise,
@@ -107,7 +107,7 @@ it is necessary to apply a large number of them to the region in order to reason
 In the `pico` framework, this is achieved by
 
 1. combining the tests into [decision trees](https://en.wikipedia.org/wiki/Decision_tree_learning) and
-2. having multiple such trees form cascade members $C_n$ by summing their outputs.
+2. having multiple such trees form cascade members $`C_n`$ by summing their outputs.
 
 This can be written in mathematical notation as follows:
 
@@ -116,12 +116,12 @@ $$
 	\sum_{t=1}^{t_n} T_t( R ),
 $$
 
-where $T_t( R )$ represents the scalar output produced by the tree $T_t$ on the input region $R$.
+where $`T_t( R )`$ represents the scalar output produced by the tree $`T_t`$ on the input region $`R`$.
 Given that each tree consists of number of pixel-comparison tests that can be resized when needed,
-it follows that the computational complexity of running a classification stage $C_n$ is independent of the region size.
+it follows that the computational complexity of running a classification stage $`C_n`$ is independent of the region size.
 
-The trees within each $C_n$ are learned with a variant of [AdaBoost](https://en.wikipedia.org/wiki/AdaBoost).
-Next, a threshold is set to the output of $C_n$ in such a way to achieve the desired *true positive rate* (e.g., $0.995$).
+The trees within each $`C_n`$ are learned with a variant of [AdaBoost](https://en.wikipedia.org/wiki/AdaBoost).
+Next, a threshold is set to the output of $`C_n`$ in such a way to achieve the desired *true positive rate* (e.g., $`0.995`$).
 All regions with scores bellow this threshold are not considered to be faces.
 New members of the cascade are added until a desired *false positive rate* is achieved.
 See the [original publication](https://arxiv.org/pdf/1305.4537.pdf) for details about the learning process.
@@ -248,13 +248,13 @@ params = {
 dets = pico.run_cascade(image, facefinder_classify_region, params);
 ```
 
-Notice that the minimum size of a face was set to $20$.
+Notice that the minimum size of a face was set to $`20`$.
 This is unnecessarily small for most applications.
 Note that the processing speed heavily depends of this parameter.
-For real-time applications, you should set this value to, e.g., $100$.
+For real-time applications, you should set this value to, e.g., $`100`$.
 However, the set minimum size is appropriate for our example image.
 
-After the detection process finishes, the array `dets` contains quadruplets of the form $(r, c, s, q)$, where $r$, $c$ and $s$ specify the position (row, column) and size of face region, and $q$ represents the detection score.
+After the detection process finishes, the array `dets` contains quadruplets of the form $`(r, c, s, q)`$, where $`r`$, $`c`$ and $`s`$ specify the position (row, column) and size of face region, and $`q`$ represents the detection score.
 The higher the score of the region, the more likely it is a face.
 
 We can render the obtained detection results onto the canvas:
@@ -320,14 +320,14 @@ Since the detections produced by `pico.js` are quite noisy, we developed a tempo
 This method is used in the mentioned [real-time demo](demo/) to significantly improve the subjective detection quality.
 
 The idea is to combine detections from several consecutive frames in order to increase the confidence that a given region is a face.
-This is achieved by instantiating a circualr buffer that holds detections from the last $f$ frames:
+This is achieved by instantiating a circualr buffer that holds detections from the last $`f`$ frames:
 
 ```
 var update_memory = pico.instantiate_detection_memory(5); // f is set to 5 in this example
 ```
 
 The `update_memory` closure encapsulates the circualr buffer and code to update it.
-The returned array contains the detections from last $f$ frames.
+The returned array contains the detections from last $`f`$ frames.
 
 Now instead of clustering detections from a single frame, we accumulate them prior to clustering:
 

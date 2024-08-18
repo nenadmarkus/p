@@ -7,14 +7,14 @@ layout: default
 katex: true
 ---
 
-Given two arrays of $d$-dimensional vectors, $\mathbf{A}\in\mathbb{R}^{M\times d}$ and $\mathbf{B}\in\mathbb{R}^{N\times d}$, we are interested in efficient vectorized code for obtaining a matrix $\mathbf{D}\in\mathbb{R}^{M\times N}$ such that
+Given two arrays of $`d`$-dimensional vectors, $`\mathbf{A}\in\mathbb{R}^{M\times d}`$ and $`\mathbf{B}\in\mathbb{R}^{N\times d}`$, we are interested in efficient vectorized code for obtaining a matrix $`\mathbf{D}\in\mathbb{R}^{M\times N}`$ such that
 
 $$
 	(\mathbf{D})_{ij} = \vert\vert\mathbf{a}_i - \mathbf{b}_j\vert\vert_2
 $$
 
-where $(\mathbf{D})_{ij}$ is the $ij$th entry of $\mathbf{D}$, $\mathbf{a}_i$ is the $i$th row of $\mathbf{A}$ and $\mathbf{b}_j$ is the $j$th row of $\mathbf{B}$.
-In other words, we want to compute the Euclidean distance between all vectors in $\mathbf{A}$ and all vectors in $\mathbf{B}$.
+where $`(\mathbf{D})_{ij}`$ is the $`ij`$th entry of $`\mathbf{D}`$, $`\mathbf{a}_i`$ is the $`i`$th row of $`\mathbf{A}`$ and $`\mathbf{b}_j`$ is the $`j`$th row of $`\mathbf{B}`$.
+In other words, we want to compute the Euclidean distance between all vectors in $`\mathbf{A}`$ and all vectors in $`\mathbf{B}`$.
 The following `numpy` code does exactly this:
 
 ```
@@ -38,19 +38,19 @@ $$
 	\mathbf{a}_i^T\mathbf{a}_i - 2\mathbf{a}_i^T\mathbf{b}_j + \mathbf{b}_j^T\mathbf{b}_j
 $$
 
-This leads us to the following equation for $\mathbf{D}$:
+This leads us to the following equation for $`\mathbf{D}`$:
 
 $$
 	\mathbf{D} = \sqrt{\mathbf{S}_A - 2\cdot\mathbf{A}\cdot\mathbf{B}^T + \mathbf{S}_B}
 $$
 
-where $\mathbf{S}_A\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_A)_{ij}=\mathbf{a}_i^T\mathbf{a}_i$ and
-$\mathbf{S}_B\in\mathbb{R}^{M\times N}$ is such that $(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j$.
+where $`\mathbf{S}_A\in\mathbb{R}^{M\times N}`$ is such that $`(\mathbf{S}_A)_{ij}=\mathbf{a}_i^T\mathbf{a}_i`$ and
+$`\mathbf{S}_B\in\mathbb{R}^{M\times N}`$ is such that $`(\mathbf{S}_B)_{ij}=\mathbf{b}_j^T\mathbf{b}_j`$.
 The square root is taken elementwise.
 
 Each of the three above terms can be obtain with vectorized code.
 
-The first term is obtained for each $i$ by squaring the entries of $\mathbf{A}$, summing along the second dimension after that and repeating the obtained result $N$ times to obtain an $M\times N$ matrix.
+The first term is obtained for each $`i`$ by squaring the entries of $`\mathbf{A}`$, summing along the second dimension after that and repeating the obtained result $`N`$ times to obtain an $`M\times N`$ matrix.
 The second term can be computed with the standard matrix-matrix multiplication routine.
 The third term is obtained in a simmilar manner to the first term.
 
@@ -82,7 +82,7 @@ def all_pairs_euclid_torch(A, B):
 
 Note that the above code can be executed on the GPU as well.
 
-By setting $M=2048$, $N=2048$ and $d=2048$, we obtain the following timings for the modern 40-thread Intel CPU and the Nvidia 1080Ti GPU:
+By setting $`M=2048`$, $`N=2048`$ and $`d=2048`$, we obtain the following timings for the modern 40-thread Intel CPU and the Nvidia 1080Ti GPU:
 
 | Implementation | Time [ms] |
 | -------------- | --------- |
