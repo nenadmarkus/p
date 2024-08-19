@@ -70,11 +70,13 @@ This is conceptually very simple, but there are some subtleties.
 In our experiments, $`S`$ is represented as a triangle mesh.
 We generate the trainig data with the help of the excellent [mesh-to-sdf library](https://github.com/marian42/mesh_to_sdf):
 
-	import mesh_to_sdf
-	import trimesh
-	mesh = trimesh.load("/path/to/mesh.stl")
-	xyz, dists = mesh_to_sdf.sample_sdf_near_surface(mesh, number_of_points=250000)
-	xyz, dists = xyz/2.0, dists/2.0 # normalize to unit cube
+```python
+import mesh_to_sdf
+import trimesh
+mesh = trimesh.load("/path/to/mesh.stl")
+xyz, dists = mesh_to_sdf.sample_sdf_near_surface(mesh, number_of_points=250000)
+xyz, dists = xyz/2.0, dists/2.0 # normalize to unit cube
+```
 
 After the above code is executed, the `xyz` variable is a 2D `numpy` array containing $`250\;000`$ $`(x, y, z)`$ points sampled inside a unit cube centered at the origin and `dists` contains the distances of these points to the shape.
 Some of the points are sampled uniformly inside the unit cube, but the majority come from the surface of the mesh.
