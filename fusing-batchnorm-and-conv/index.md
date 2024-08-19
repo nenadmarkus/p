@@ -129,7 +129,7 @@ The following function takes as arguments two PyTorch layers, `nn.Conv2d` and `n
 
 Edit on October 2021: fix bug found by Pattarawat Chormai ([details](fix.txt)).
 
-```
+```python
 def fuse_conv_and_bn(conv, bn):
 	#
 	# init
@@ -161,7 +161,7 @@ def fuse_conv_and_bn(conv, bn):
 
 The following code snippet tests the above function on the first two layers of ResNet18:
 
-```
+```python
 import torch
 import torchvision
 torch.set_grad_enabled(False)

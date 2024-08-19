@@ -24,7 +24,7 @@ However, we are going to use sphere tracing [1].
 With this approach we can easily compute which pixels belong to the surface of some mathematically defined 3D object (through its [signed distance estimator](https://en.wikipedia.org/wiki/Signed_distance_function)) and then apply CPPN-based colorization as explained in our [previous post](../cppns-on-3d-surfaces).
 The following pseudocode shows the basic approach for an object defined by `sdf_fun`:
 
-```
+```python
 for m in range(0, M):
 	for n in range(0, N):
 		# compute the ray for our current pixel

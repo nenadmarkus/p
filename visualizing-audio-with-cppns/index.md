@@ -157,7 +157,7 @@ Maybe this is the reason many people find the visualizations artistically appeal
 
 Without further ado, here is the code:
 
-```
+```python
 import numpy
 # basic parameters
 seed = 1337         # PRNG seed

@@ -293,7 +293,7 @@ In the next section we provide an efficient `numpy` implementation of the algori
 
 The following Python function takes as argument the `data` matrix representing $`\mathbf{X}`$ and the number of desired projection directions, `projdims`, representing $`N'`$.
 
-```
+```python
 def do_pca(data, projdims):
 	#
 	usetransf = data.shape[0] < data.shape[1]
@@ -334,7 +334,7 @@ Each sample contains the following four measurements: the length and the width o
 Due to its simplicity and small size, it is often used to showcase the performance of various statistical algorithms.
 We use it here to show how to use our implementation of PCA:
 
-```
+```python
 import numpy
 from sklearn import datasets
 import matplotlib.pyplot

@@ -146,7 +146,7 @@ To use the runtime in your code, first include [lploc.js](demo/lploc.js).
 Next, initialize the library using the function `unpack_localizer` with the localizer structure (raw bytes) produced by the learning tool described above
 (these bytes are assumed to be available at the URL `puplocurl`):
 
-```
+```javascript
 fetch(puplocurl).then(function(response) {
 	response.arrayBuffer().then(function(buffer) {
 		var bytes = new Int8Array(buffer);
@@ -158,7 +158,7 @@ fetch(puplocurl).then(function(response) {
 
 The function `do_puploc`, made available by the above code, has the following prototype:
 
-```
+```javascript
 function do_puploc(r, c, s, nperturbs, image) {
     ...
 }

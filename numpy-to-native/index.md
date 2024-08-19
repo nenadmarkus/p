@@ -37,7 +37,7 @@ $$
 
 Using pure Python, this can be computed as:
 
-```
+```python
 sum=0
 for i in range(0, n):
 	sum += A[i]
@@ -47,7 +47,7 @@ mean = sum/n
 Trivial, of course.
 However, it is even simpler using `numpy`:
 
-```
+```python
 mean = numpy.mean(A)
 ```
 
@@ -57,7 +57,7 @@ In the next section, we express this computation in native code.
 
 The following C function will do the job:
 
-```
+```python
 float compute_mean(float* A, int n)
 {
 	int i;
@@ -78,7 +78,7 @@ The following section shows how to invoke this function from Python.
 
 To load `lib.so` as a Python object, execute the following commands:
 
-```
+```python
 import ctypes
 lib = ctypes.cdll.LoadLibrary('./lib.so')
 ```
@@ -88,7 +88,7 @@ The first parameter can be obtained with `ctypes.c_void_p(A.ctypes.data)` and th
 
 Next, we indicate that we expect a float as a return value and call the desired function on our array:
 
-```
+```python
 lib.compute_mean.restype = ctypes.c_float
 mean = lib.compute_mean(ctypes.c_void_p(A.ctypes.data), ctypes.c_int(n))
 ```
@@ -103,7 +103,7 @@ A possible pitfall of this approach is forgetting that a `numpy` array can be st
 (e.g., if we perform a [slicing operation](https://www.tutorialspoint.com/numpy/numpy_indexing_and_slicing.htm) on a 2D array).
 We can examine whether an array is contiguous by checking its `C_CONTIGUOUS` flag and, if required, react accordingly:
 
-```
+```python
 if not A.flags['C_CONTIGUOUS']:
 	A = numpy.ascontiguousarray(A)
 ```

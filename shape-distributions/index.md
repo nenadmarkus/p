@@ -104,7 +104,7 @@ The resulting histogram can be used as a shape signature after the necessary nor
 The following code approximates the distribution of distances between pairs of points in a point cloud
 (we assume that `P` is a list of `n` points):
 
-```
+```python
 import random
 vals = numpy.zeros(4096)
 for i in range(0, len(vals)):
@@ -117,7 +117,7 @@ H = numpy.histogram(vals, bins=64, range=(0.0, 3.0), density=True)
 Two histograms can be compared, for example, using the [Bhattacharyya distance](https://en.wikipedia.org/wiki/Bhattacharyya_distance).
 A simpler solution is to simply use the $`\ell_1`$ norm:
 
-```
+```python
 numpy.sum(numpy.abs(H1 - H2))
 ```
 

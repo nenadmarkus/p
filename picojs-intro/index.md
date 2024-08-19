@@ -153,7 +153,7 @@ The idea is to run this classifier across the whole image to obtain all the face
 (details later).
 In `pico.js`, the region-classification process is wrapped in a function with the following prototype:
 
-```
+```javascript
 function(r, c, s, pixels, ldim) {
 	/*
 		...
@@ -180,7 +180,7 @@ This cascade is able to process images in real time at a reasonable detection ra
 
 The `facefinder` cascade can be downloaded directly from the official github repository using the following snippet:
 
-```
+```javascript
 var facefinder_classify_region = function(r, c, s, pixels, ldim) {return -1.0;};
 var cascadeurl = 'https://raw.githubusercontent.com/nenadmarkus/pico/c2e81f9d23cc11d1a612fd21e4f9de0921a5d0d9/rnt/cascades/facefinder';
 fetch(cascadeurl).then(function(response) {
@@ -207,7 +207,7 @@ The detection process starts once the user clicks a button `Detect faces`.
 
 The following JS code prepares the drawing context, draws the image and fetches the raw pixel values (in the red, green, blue + alpha format):
 
-```
+```javascript
 var img = document.getElementById('image');
 var ctx = document.getElementById('canvas').getContext('2d');
 ctx.drawImage(img, 0, 0);
@@ -216,7 +216,7 @@ var rgba = ctx.getImageData(0, 0, 480, 360).data; // the size of the image is 48
 
 Next, we write a helper function that transforms an input RGBA array into grayscale:
 
-```
+```javascript
 function rgba_to_grayscale(rgba, nrows, ncols) {
 	var gray = new Uint8Array(nrows*ncols);
 	for(var r=0; r<nrows; ++r)
@@ -229,7 +229,7 @@ function rgba_to_grayscale(rgba, nrows, ncols) {
 
 Now we are prepared to invoke the procedure that will run the `facefinder_classify_region` function across the image:
 
-```
+```javascript
 image = {
 	"pixels": rgba_to_grayscale(rgba, 360, 480),
 	"nrows": 360,
@@ -259,7 +259,7 @@ The higher the score of the region, the more likely it is a face.
 
 We can render the obtained detection results onto the canvas:
 
-```
+```javascript
 qthresh = 5.0
 for(i=0; i<dets.length; ++i)
 	// check the detection score
@@ -295,7 +295,7 @@ Its score is updated to the sum of all the detection scores within the cluster.
 
 In `pico.js`, this is achieved as follows:
 
-```
+```javascript
 dets = pico.cluster_detections(dets, 0.2); // set IoU threshold to 0.2
 ```
 
@@ -322,7 +322,7 @@ This method is used in the mentioned [real-time demo](demo/) to significantly im
 The idea is to combine detections from several consecutive frames in order to increase the confidence that a given region is a face.
 This is achieved by instantiating a circualr buffer that holds detections from the last $`f`$ frames:
 
-```
+```javascript
 var update_memory = pico.instantiate_detection_memory(5); // f is set to 5 in this example
 ```
 
@@ -331,7 +331,7 @@ The returned array contains the detections from last $`f`$ frames.
 
 Now instead of clustering detections from a single frame, we accumulate them prior to clustering:
 
-```
+```javascript
 dets = pico.run_cascade(image, facefinder_classify_region, params);
 dets = update_memory(dets); // accumulates detections from last f frames
 dets = pico.cluster_detections(dets, 0.2); // set IoU threshold to 0.2

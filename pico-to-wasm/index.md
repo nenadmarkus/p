@@ -86,7 +86,7 @@ You can open `facefinder.hex` with a text editor and view its contents.
 
 Next, let us make a simple wrapper `main.c` aroud the `pico` runtime:
 
-```
+```c
 #include "picornt.c"
 
 int find_faces(
@@ -179,7 +179,7 @@ We assume in the following text that this initialization process has finished an
 
 Let us first allocate memory for the operation of our Wasm module:
 
-```
+```javascript
 const nrows=480, ncols=640;
 const ppixels = Module._malloc(nrows*ncols);
 const pixels = new Uint8Array(Module.HEAPU8.buffer, ppixels, nrows*ncols);
@@ -191,7 +191,7 @@ const rcsq = new Float32Array(Module.HEAPU8.buffer, prcsq, maxndetections);
 
 We draw the image onto the canvas to retrieve its RGBA pixel values:
 
-```
+```javascript
 // we assume these are the height and width of our image
 const nrows=480, ncols=640;
 
@@ -203,7 +203,7 @@ const rgba = ctx.getImageData(0, 0, ncols, nrows).data;
 Next, we need to move this data into the memory of our Wasm module.
 This, along with the conversion from RGBA to grayscale, can be done as follows:
 
-```
+```javascript
 function rgba_to_grayscale(rgba, nrows, ncols) {
 	for(let r=0; r<nrows; ++r)
 		for(let c=0; c<ncols; ++c)
@@ -215,7 +215,7 @@ function rgba_to_grayscale(rgba, nrows, ncols) {
 
 Finally, we can now invoke the face detector and draw the found faces:
 
-```
+```javascript
 // run the detector across the image
 var ndetections = Module._find_faces(prcsq, maxndetections, ppixels, nrows, ncols, ncols, 1.1, 0.1, 100, 1000);
 
