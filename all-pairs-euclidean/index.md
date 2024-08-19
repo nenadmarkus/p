@@ -17,7 +17,7 @@ where $`(\mathbf{D})_{ij}`$ is the $`ij`$th entry of $`\mathbf{D}`$, $`\mathbf{a
 In other words, we want to compute the Euclidean distance between all vectors in $`\mathbf{A}`$ and all vectors in $`\mathbf{B}`$.
 The following `numpy` code does exactly this:
 
-```
+```python
 def all_pairs_euclid_naive(A, B):
 	#
 	D = numpy.zeros((A.shape[0], B.shape[0]), dtype=numpy.float32)
@@ -56,7 +56,7 @@ The third term is obtained in a simmilar manner to the first term.
 
 Without further ado, here is the `numpy` code:
 
-```
+```python
 def all_pairs_euclid_numpy(A, B):
 	#
 	sqrA = numpy.broadcast_to(numpy.sum(numpy.power(A, 2), 1).reshape(A.shape[0], 1), (A.shape[0], B.shape[0]))
@@ -69,7 +69,7 @@ def all_pairs_euclid_numpy(A, B):
 
 And the following implementation uses Pytorch:
 
-```
+```python
 def all_pairs_euclid_torch(A, B):
 	#
 	sqrA = torch.sum(torch.pow(A, 2), 1, keepdim=True).expand(A.shape[0], B.shape[0])
