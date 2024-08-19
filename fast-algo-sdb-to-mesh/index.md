@@ -106,7 +106,7 @@ $$
 
 The pseudocode of the method is below.
 
-```
+```javascript
 // inputs:
 //  * `eval_sdb` is the signed distance bound represeting a shape
 //  * `N` is the grid resolution

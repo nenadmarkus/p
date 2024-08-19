@@ -16,7 +16,7 @@ The following articles are top-ranked on Google but do not provide a straightfor
 
 The trick is to read from `stderr` (**!!!!**) after setting the redirection flags and do this in a separate process to not block the GUI:
 
-```
+```csharp
 Process process = new Process();
 process.StartInfo.FileName = "ffmpeg";             // or "ffmpeg.exe" if on MS Windows
 process.StartInfo.Arguments = args;                // ffmpeg args go here
@@ -38,6 +38,6 @@ If needed, it is simple to modify the above snippet so that the output is read i
 If we would like to terminate the process, we can do this by writing `q` to its `stdin`.
 The following line of code works:
 
-```
+```csharp
 process.StandardInput.WriteLine("q");
 ```
