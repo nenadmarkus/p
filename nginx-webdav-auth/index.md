@@ -33,7 +33,7 @@ events {
 
 http {
     # limit maximum file upload size to 2MB
-    client_max_body_size 2000M;
+    client_max_body_size 2M;
 
     server {
         listen 80;
@@ -136,7 +136,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("* auth request (%d): "+username+":"+password+" -> "+method+" -> "+path+"\n", ok)
 
-	if !ok || !isValidUser(username, password, path) {
+	if !ok || !isValid(username, password, path) {
 		w.Header().Set("WWW-Authenticate", `Basic realm="Restricted"`)
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		fmt.Println("* auth not ok")
@@ -147,7 +147,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-func isValidUser(username, password, path string) bool {
+func isValid(username, password, path string) bool {
 
 	expectedPassword, exists := accessList[username]
 	if !exists {
