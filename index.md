@@ -13,6 +13,7 @@ Also see my [homepage](https://nenadmarkus.github.io) for a list of projects rel
 
 A list of all published posts follows.
 
+* [03/2025 - Configuring Nginx WebDAV with custom authentication](nginx-webdav-auth)
 * [09/2024 - A minimalistic implementation of Gaussian process regression](minimalistic-gaussian-process-regression)
 * [10/2022 - Parametric 3D modeling with GPT-3](3d-with-gpt-3)
 * [12/2020 - Some experiments in learning signed distance fields from data](learning-signed-distance-fields)
